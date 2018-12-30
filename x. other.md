@@ -75,3 +75,18 @@ doc = response.json()
 pp(doc)  # -> will print 'doc' in a relatively more legible JSON format
 ```
 
+.
+
+
+
+## - Faker
+
+```python
+from faker import Faker
+fake = Faker()
+
+print(fake.name())
+print(fake.job())
+print(fake.address())
+```
+
