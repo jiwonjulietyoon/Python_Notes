@@ -1,11 +1,17 @@
 # Python Variables
 
-### Rules of Thumb for Variable Names
+### Rules of Thumb for Variable Names (식별자)
 
 - Each variable must have a unique name
 - Begin with an alphabet or _(underscore) - may not begin with a number
 - Normally use lowercase letters, numbers, and underscores (no spaces in between)
-- May not use reserved keywords such as built-in functions, identifiers, modules, etc.
+- May not use reserved keywords as well as built-in functions, identifiers, modules, etc.
+    - List of reserved keywords:
+    ```python
+    >>> import keyword
+    >>> print(keyword.kwlist)
+    ['False', 'None', 'True', 'and', 'as', 'assert', 'async', 'await', 'break', 'class', 'continue', 'def', 'del', 'elif', 'else', 'except', 'finally', 'for', 'from', 'global', 'if', 'import', 'in', 'is', 'lambda', 'nonlocal', 'not', 'or', 'pass', 'raise', 'return', 'try', 'while', 'with', 'yield']
+    ```
 
 
 
