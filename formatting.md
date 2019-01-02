@@ -99,17 +99,17 @@ print('Curly Bracket 기호: {{}}'.format())
 
 .
 
-## f'string' - String Interpolation (Python 3.6+)
+## f"string" - String Interpolation (Python 3.6+)
 
 ```python
 >>> num1 = 5
 >>> num2 = 10
->>> f'Five plus ten is {num1 + num2} and not {2 * (num1 + num2)}.'
-'Five plus ten is 15 and not 30.'
+>>> f"Five plus ten is {num1 + num2} and not {2 * (num1 + num2)}."
+"Five plus ten is 15 and not 30."
 ```
 Format specifications also work:
 ```python
 >>> name = "Jiwon"
->>> print(f'Hi there! This is {name:*^11} :)')
+>>> print(f"Hi there! This is {name:*^11} :)")
 Hi there! This is ***Jiwon*** :)
 ```
