@@ -73,12 +73,13 @@ print('1 = {one} / 2 = {1} / 3 = {0}'.format(three, two, one='eins'))
 
 ##### Format Specifier
 
-{A:B>C}
+{A:B>C.D}
 
 - A: index number or variable name
 - B: fill character (공백 대체 문자) - align과 C를 지정해야 사용 가능
 - '>', '<', '^': right, left, center align - C를 지정해야 사용 가능
 - C: minimum field width
+- D: precision (소수점 이하 자리수)
 
 `print('|{:->10}|'.format('juliet'))` => `|----juliet|`
 
@@ -112,4 +113,10 @@ Format specifications also work:
 >>> name = "Jiwon"
 >>> print(f"Hi there! This is {name:*^11} :)")
 Hi there! This is ***Jiwon*** :)
+```
+
+```python
+>>> pi = 3.141592
+>>> print(f"pi is: {pi:*^11.4}")
+pi is: ***3.142***
 ```
