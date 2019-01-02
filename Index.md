@@ -108,7 +108,7 @@ print(list_a[2][:2])   # -> ['X', 'Y']
 
 ## List - Adding Items
 
-#### 산술 연산자 ` + , * ` : does NOT modify the original list
+### 산술 연산자 ` + , * ` : does NOT modify the original list
 
 ##### `+` : 연결하기
 
@@ -126,7 +126,116 @@ print(list_a[2][:2])   # -> ['X', 'Y']
     print(str(a[4]) + 'string2')   # -> 5string2
     ```
 
-`*`: 반복하기
+##### `*`: 반복하기
+
+`print([5, ['a', 'b'], 6] * 2)` => `[5, ['a', 'b'], 6, 5, ['a', 'b'], 6]`
+
+### 리스트 내장 함수: modifies the original list
+
+##### list.append(_arg_) -> 인자를 통째로 list 끝에 append (add one item at a time)
+
+- takes exactly one argument
+
+  - ```python
+    app = [1, 2, 3]
+    app.append('a')
+    print(app)       # -> [1, 2, 3, 'a']
+    
+    # app.append(1, 2)  => TypeError: append() takes exactly one argument
+    ```
+
+- the 'one' argument could be a list => results in a 2차원 리스트
+
+  - ```python
+    app.append(['m', 'n'])
+    print(app)      # -> [1, 2, 3, 'a', ['m', 'n']]
+    ```
+
+- append() in a for loop:
+
+  - ```python
+    app_test = []
+    for x in range(0,4):
+        app_test.append(x)
+        
+    print(app_test)     # -> [0, 1, 2, 3]
+    ```
+
+##### list.extend(_[new_list]_) -> 인자의 아이템만 뽑아서 list 끝에 아이템으로 추가 ('+' 연산자와 유사)
+
+- only takes lists as the argument
+
+  - ```python
+    ext = [1, 2, 3]
+    ext.extend(['e', 'x', 't'])
+    print(ext)      # -> [1, 2, 3, 'e', 'x', 't']
+    ```
+
+##### list.insert(_index_, _new_item_) -> 인자를 지정 위치에 아이템으로 추가
+
+- insert ONE item at a time
+
+  - ```python
+    ins = [1, 2, 4, 5]
+    ins.insert(2, 3)
+    print(ins)     # -> [1, 2, 3, 4, 5]
+    ```
+
+.
+
+## List  - 아이템 수정하기 - modifies original list
+
+##### via Indexing
+
+```python
+a = ['x', 'y', 'v']
+a[2] = 'z'
+print(a)   # -> ['x', 'y', 'z']
+```
+
+##### via Slicing
+
+```python
+b = ['a', 'b', 'C', 'D', 'E', 'f']
+b[2:-1] = ['c', 'd', 'e']      # 양변이 가리키는 아이템 개수는 동일하지 않아도 됨
+print(b)   # -> ['a', 'b', 'c', 'd', 'e', 'f']
+```
+
+.
+
+## List - 아이템 삭제하기 - modifies original list
+
+##### list[ : ] = []
+
+```python
+c = [1, 2, 3, 'm', 'n', 4, 5]
+c[3:5] = []
+print(c)     # -> [1, 2, 3, 4, 5]
+
+# c.f
+e = [1, 2, 3]
+e[1] = []
+print(e)     # -> [1, [], 3]   (empty list is inserted)
+```
+
+##### del list[index]
+
+```python
+d = [1, 2, 3, 'm', 'n', 4, 5]
+del d[3:5]
+print(d)     # -> [1, 2, 3, 4, 5]
+```
+
+- `del` can also delete the list completely
+  - e.g) `del thislist`
+
+- Deleting every other item using 'del'
+
+
+
+
+
+
 
 
 
