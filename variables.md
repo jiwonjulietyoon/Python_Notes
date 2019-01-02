@@ -17,18 +17,23 @@
 
 
 
-### Declaring Variables
+### Declaring Variables (assign with `=`)
 
 - String: `string = "Variable"`   (wrap with single or double quotes)
 - Number: `num = 10`
 - Declare multiple variables at once: `a, b, c = 10, 20, 'thirty'`
-- Declare multiple variables with same value: `x = y = z = 10`
+    - here, the number of objects given on both sides must be the same
+- Assign same values to multiple variables: `x = y = z = 10`
+    - in this case, id(x), id(y), and id(z) will be identical
+- Swapping variable values: `a, b = b, a`
+- `type(variable_name)` to check the type of the variable
 
 
 
 ### Variables are stored in memory spaces
 
 - Each variable is stored in its own space, hence has its own unique address
+- Check with `id(variable_name)`
 
   ```python
   m = 200
@@ -39,9 +44,6 @@
 
 
 ### Other
-
-- Swapping variable values: `a, b = b, a`
-
 
 
 
