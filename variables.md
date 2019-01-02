@@ -12,6 +12,8 @@
     >>> print(keyword.kwlist)
     ['False', 'None', 'True', 'and', 'as', 'assert', 'async', 'await', 'break', 'class', 'continue', 'def', 'del', 'elif', 'else', 'except', 'finally', 'for', 'from', 'global', 'if', 'import', 'in', 'is', 'lambda', 'nonlocal', 'not', 'or', 'pass', 'raise', 'return', 'try', 'while', 'with', 'yield']
     ```
+    - Using reserved keywords as a variable name will not automatically raise an error. However, doing so will result in newly defining the reserved keyword, thus not being able to make use of the keyword's original functionality.
+    - To cancel/delete variables, use: `del variable_name`
 
 
 
