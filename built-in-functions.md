@@ -23,8 +23,9 @@
 +) Multiple lines within a single print function:
 
 ```python
-print('''Use 3 single (or double) quotes
-to print multiple lines without writing \\n''')
+print("""Use 3 double quotes
+to print multiple lines without writing \\n.
+F-string interpolation - {} - also works here.""")
 ```
 
 +) Multiple print functions in a single line are joined with a semicolon: `print('Line 1'); print('Line 2')`
