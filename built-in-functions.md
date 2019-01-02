@@ -81,6 +81,52 @@ print('Input is: ', my_input)
 
 .
 
+## int()
+- 숫자형 자료형을 integer type으로 형변환한다 (e.g float => integer)
+- float => integer 의 과정에서, 소수점 이하의 정보는 반올림 없이 유실된다.
+    - `print(int(1.8), type(int(1.8)))` => `1 <class 'int'>`  (1.8 => 1)
+- 문자열은 integer type으로 형변환할 수 없다.
+    - `print(int('abc'))` => this will raise a 'ValueError'
+
+.
+
+## float()
+- 숫자형 자료형을 float type으로 형변환한다 (e.g integer => float)
+    - `print(float(3))` => `3.0`
+- int()와 마찬가지로, 문자열은 float()을 사용할 수 없다 (ValueError 발생)
+
+.
+
+## str()
+- 어떤 자료형이든 다 string type으로 형변환한다
+    - `print(str(12345), type(str(12345)))`  => `12345 <class 'str'>`
+
+.
+
+## eval()
+- 자료형을 함수가 스스로 판단해서 자동으로 맞춰준다.
+    - `print(type(eval('1234')))`  =>  `<class 'int'>`
+- input()와 함께 사용될 때가 많다.
+    - eval() 사용하지 않을 때, input()로 입력 받은 데이터는 디폴트로 string type이 된다.
+    - eval() 사용할 때:
+    ```python
+    >>> input = eval(input("Enter a number: "))
+    Enter a number: 1111
+    >>> print('input:', input, type(input))
+    1111 <class 'int'>
+    ```
+
+.
+
+## round()
+round(_number_, _precision(integer)_)
+
+e.g) `round(2.33333, 2)`  => `2.33`
+
+.
+
+.
+
 # 문자열 내장 함수
 
 (The following functions do __NOT__ modify the original string)
@@ -175,7 +221,7 @@ guns, germs, and steel
 Sunday Evening Post
 ```
 
-####_str_.split('_value_') 
+#### _str_.split('_value_') 
 
 - str을 value 기준으로 쪼갠 다음, 리스트 형태로 반환
 
