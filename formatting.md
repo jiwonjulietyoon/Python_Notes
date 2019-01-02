@@ -1,4 +1,4 @@
-# Python Formatting: %, .format, f"string"
+# String Formatting: %, str.format(), f"string" interpolation
 
 ## % Formatting
 
@@ -107,4 +107,9 @@ print('Curly Bracket 기호: {{}}'.format())
 >>> f'Five plus ten is {num1 + num2} and not {2 * (num1 + num2)}.'
 'Five plus ten is 15 and not 30.'
 ```
-
+Format specifications also work:
+```python
+>>> name = "Jiwon"
+>>> print(f'Hi there! This is {name:*^11} :)')
+Hi there! This is ***Jiwon*** :)
+```
