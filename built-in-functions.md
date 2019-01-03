@@ -120,7 +120,9 @@ print('Input is: ', my_input)
 .
 
 ## round()
-round(_number_, _precision(integer)_)
+round(_number_[, _precision(integer)_])
+
+- if _precision_ is not given, round to nearest integer
 
 e.g) `round(2.33333, 2)`  => `2.33`
 
@@ -147,6 +149,20 @@ e.g) `round(2.33333, 2)`  => `2.33`
 ## enumerate(_iterable_[, start=0])
 
 Returns an enumerate object, after pairing each value with a count number (starting at 0 by default). The count number and object value are paired into tuples.
+
+
+
+```python
+colors = ['Apple', 'Banana', 'Coconut', 'Deli', 'Ele', 'Grape']
+fruit = [value for (index, value) in enumerate(colors) if index not in (0, 4, 5)]
+print(fruit)    # -> ['Banana', 'Coconut', 'Deli']
+```
+
+
+
+
+
+
 
 
 

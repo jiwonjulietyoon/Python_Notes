@@ -67,7 +67,51 @@ num <= 5
 
 따라서 반드시 종료조건을 설정해주어야 한다. (Or else, will result in an infinite loop)
 
-##### break, continue
+- use `break`, `continue`
+
+##### Vending Machine - Coffee
+
+```python
+price = 300
+left = 10
+money = 0
+
+while left >= 1:
+    money += int(input("Insert cash: "))
+    if money < 300:
+        print("Not enough cash")
+        continue
+    else:
+        while True:
+            cnt = int(input(f"커피 몇 잔? (balance: {money}) => "))
+            if cnt > left:
+                print(f'Not enough coffee. Only {left} available')
+                continue
+            if money >= 300 * cnt:
+                left -= cnt
+                print(f'Result: 커피 {cnt}잔  ({left}잔 remaining)')
+                if money > 300 * cnt:
+                    money -= 300 * cnt
+                    print(f'Change: {money}')
+                    money = 0
+                elif money == 300 * cnt:
+                    money = 0
+                break
+            else:
+                print('Not enough cash\n')
+                choice = input('Choose: 1) Insert more cash  or  2) Less coffee => ')
+                if choice == '1':
+                    break
+                elif choice == '2':
+                    continue
+    print()
+
+print('Out of stock')
+```
+
+
+
+
 
 .
 
@@ -130,7 +174,83 @@ second: 200
 # 3 arguments (first, second, third) : the length of each and every item in the list must also be '3'
 ```
 
+##### 별 찍기: Right Triangle
 
+```python
+h = int(input("Enter triangle height: "))
+for x in range(1, h+1):
+    print(f"{'*'*x}")
+
+# result (when h = 3):
+# *
+# **
+# ***
+```
+
+##### 별 찍기: Christmas Tree
+
+```python
+h = int(input("Enter triangle height: "))
+for x in range(1, h+1):
+    print(f"{' '*(h-x)}", end='')
+    print(f"{'*'*(2*x-1)}")
+
+# result (when h = 3):
+#   *
+#  ***
+# *****
+```
+
+##### 별 찍기: Upside-down Christmas Tree
+
+```python
+h = int(input("Enter triangle height: "))
+for x in range(h, 0, -1):
+    print(f"{' '*(h-x)}", end='')
+    print(f"{'*'*(2*x-1)}")
+```
+
+##### Calendar 2019
+
+```python
+cnt = 2
+tmp = 0
+
+print(f'{"= 2019년 달력 =":^21}\n')
+
+for x in range(1, 13):
+    
+    # Header: Month & days of the week
+    print(f'        {x:>2} 월')
+    print(' S  M  T  W  T  F  S')
+    
+    # Last date of the month
+    if x == 2:
+        enddate = 28
+    elif x in [1, 3, 5, 7, 8, 10, 12]:
+        enddate = 31
+    elif x in [4, 6, 9, 11]:
+        enddate = 30
+    
+    # Determines which column "Day 1" will be placed in
+    print(' '*cnt*3, end='')
+    
+    # Prints dates from 1 to last date of the month
+    for y in range(1, enddate+1):
+        print(f'{y:>2}', end=' ')
+        tmp += 1
+        if y%7==(7-cnt)%7:
+            print()     # line break after reaching 'Saturday' column
+            tmp = 0
+    cnt = tmp  # Column in which the last date has been placed
+    
+    # Extra line break when the last date is NOT a Saturday
+    if tmp != 0:
+        print()
+    
+    # Line break in between the months
+    print()
+```
 
 
 
