@@ -227,26 +227,412 @@ print(d)     # -> [1, 2, 3, 4, 5]
 ```
 
 - `del` can also delete the list completely
+
   - e.g) `del thislist`
 
 - Deleting every other item using 'del'
 
+  1. ```python
+     del_step = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+     del del_step[::2]
+     print(del_step)      # -> [2, 4, 6, 8, 10]
+     ```
 
+  2. ```python
+     del_range = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+     for x in range(5):
+         del del_range[x]
+     print(del_range)      # -> [2, 4, 6, 8, 10]
+     ```
 
+     - `range(5)`는 `(0, 1, 2, 3, 4)` 이긴 하지만, for loop이 돌면서 하나씩 삭제된다는 점 유의!
+     - e.g) `del_range[0] => [2, 3, 4, 5, 6, 7, 8, 9, 10]`
+     - e.g) `del_range[1] => [2, 4, 5, 6, 7, 8, 9, 10]`
 
-
-
-
-
-
-
-
-
+##### list.clear()   :  empties the list
 
 ```python
->>> list_a = [3, 1, 6, 4, 5, 2]
->>> print(sorted(list_a)) # does not modify original list
-[1, 2, 3, 4, 5, 6] 
+thislist = ['a', 'b']
+thislist.clear()
+print(thislist)          # -> []
+```
+
+##### list.remove('_item_')
+
+- only deletes the first occurring 'item' (not all)
+
+- only accepts one argument
+
+- ```python
+  f = [1, 2, 3, 2, 4, 2, 5]
+  f.remove(2)
+  print(f)          # -> [1, 3, 2, 4, 2, 5]
+  ```
+
+##### list.pop()   : 마지막 아이템을 반환한 후 리스트에서 삭제하기
+
+```python
+g = [1, 2, 3, 4, 5]
+print(g.pop())      # -> 5
+print(g)            # -> [1, 2, 3, 4]
+```
+
+.
+
+## List - 아이템 정렬하기 - modifies original list
+
+##### list.sort()
+
+- default: ascending order (`list.sort(reverse=False)`)
+
+  - descending order (`list.sort(reverse=True)`)
+
+- ```python
+  a = [3, 6, 1, 5, 4, 2]
+  
+  a.sort()
+  print(a)     # -> [1, 2, 3, 4, 5, 6]
+  
+  a.sort(reverse=True)
+  print(a)     # -> [6, 5, 4, 3, 2, 1]
+  ```
+
+- c.f. `sorted(list)` : sorts list without modifying the original list
+
+  - ```python
+    list_a = [3, 1, 6, 4, 5, 2]
+    print(sorted(list_a))       # -> [1, 2, 3, 4, 5, 6] 
+    ```
+
+##### list.reverse()   : flips order of items; 아이템 순서를 반대로 뒤집기
+
+- Note) `reverse()` != `sort(reverse=True)`
+
+- ```python
+  a = [3, 6, 1, 5, 4, 2]
+  a.reverse()
+  print(a)     # -> [2, 4, 5, 1, 6, 3]
+  ```
+
+.
+
+## List - Count
+
+##### list.count('_item_')     : count specific items
+
+```python
+a = [1, 2, 3, 3, 3, 3, '3', '3', '3', 4, 5]
+print(a.count(3))      # -> 4
+print(a.count('3'))    # -> 3
+```
+
+##### len(list)      : count total number of items in the list
+
+```python
+a = [1, 2, 3, 3, 3, 3, '3', '3', '3', 4, 5]
+print(len(a))          # -> 11
+```
+
+.
+
+.
+
+# TUPLE
+
+tuple_ex = (item1, item2, item3)
+
+- can NOT edit/delete tuple items! 
+- 'Tuple' object does NOT support item assignment (수정) and deletion
+
+##### Creating a Tuple
+
+```python
+t1 = ()
+t2 = (1, 2, 3)
+t3 = 1, 2, 3
+t4 = 1,          # t4 = 1  이라고만 쓰면 t4는 tuple이 아닌 int 가 된다.
+```
+
+##### Tuple Indexing, Slicing
+
+```python
+t1 = (1, 2, 3, 4, 5) 
+print(t1[2], type(t1[2]))     # -> 3 <class 'int'>
+print(t1[:3], type(t1[:3]))   # -> (1, 2, 3) <class 'tuple'>
+```
+
+##### `+`, `*` Operators
+
+```python
+t1 = (1, 2, 3, 4)
+t2 = (100, 200)
+print(t1 + t2)        # -> (1, 2, 3, 4, 100, 200)
+print(t2 * 3)         # -> (100, 200, 100, 200, 100, 200)
+```
+
+.
+
+.
+
+# DICTIONARY
+
+dict_ex = {key1:value1, key2:value2, ...}
+
+- Key: 문자, 숫자, 튜플
+- Value: 문자, 숫자, 리스트, 딕셔너리 등 any data type
+- Item = {key:value} 하나의 쌍
+- unordered, changeable, indexed
+
+##### Creating a Dictionary
+
+```python
+d1 = dict()
+d2 = {}
+```
+
+##### 1차원 딕셔너리 : 모든 아이템이 각각 하나의 값으로만 이루어짐
+
+```python
+d1 = {'A': 65, 'B': 66, 'C': 67, 'Z': ''}  # key/value can't be empty
+print(d1)                                  # => ''라도 넣어야 함
+```
+
+##### 다차원 딕셔너리 : 아이템에 리스트, 딕셔너리 등이 있음
+
+```python
+d3 = {'a': [1, 2, 3], 
+      'b': 100, 
+      'c': {1: 300}}
+d4 = {'a': [1, 2, 3, [10, 20, (0, 0)]], 
+      'b': 100, 
+      'c': {1: 300, 2: [1, 2, {'A': 'B'}]}}
+```
+
+##### Key vs Value
+
+| key                                                          | value                                                        |
+| ------------------------------------------------------------ | ------------------------------------------------------------ |
+| - can't be redundant (변수명 중복 불가인 것처럼) <br>-  key 이름을 중복 작성하면, 가장 마지막에 할당된 아이템으로 덮어쓰기 된다 <br>- List는 쓸 수 없다. 수정 불가능한 Tuple은 쓸 수 있다. | - 모든 자료형을 쓸 수 있다<br>- key가 있으면 반드시 value도 있어야 한다. |
+
+##### Dictionaries are unordered, but indexed by 'key' (no index numbers)
+
+```python
+d1 = {'num': [1, 2], 
+      'alpha': ('a', 'b', 'c'), 
+      'month': {'Jan': 1, 'Feb': 2}}
+
+print(d1['alpha'][1])               # -> b
+print(d1['month']['Feb'])           # -> 2
+print(d1.get('month'))              # -> {'Jan': 1, 'Feb': 2}
+print(d1.get('month').get('Jan'))   # -> 1
+```
+
+.
+
+## Dictionary - Adding Items
+
+##### Adding a new {key: value}
+
+```python
+d2 = {}
+d2['Jan'] = '1st'
+d2['Feb'] = '2nd'
+print(d2)             # -> {'Jan': '1st', 'Feb': '2nd'}
+```
+
+##### Replacing the value of an existing key
+
+```python
+d3 = {1:'a', 2:'b', 3:'d'}
+d3[3] = 'c'
+print(d3)             # -> {1: 'a', 2: 'b', 3: 'c'}
+```
+
+.
+
+## Dictionary - Deleting Items
+
+##### del dict['_key_']   : delete single {key: value} item
+
+```python
+d4 = {11:'a', 22:'b', 33:'A'}
+del d4[33]
+print(d4)             # -> {11: 'a', 22: 'b'}
+```
+
+##### dict.clear()   : empty entire dictionary
+
+```python
+d4.clear()
+print(d4)             # -> {}
+```
+
+.
+
+## Dictionary - dict.keys(), dict.values(), dict.items(), in operator
+
+```python
+d5 = {'num': [1, 2], 
+      'alpha': ('a', 'b', 'c'), 
+      'month': {'Jan': 1, 'Feb': 2}}
+```
+
+##### dict.keys()   : 딕셔너리의 key 값만 반환
+
+```python
+print(d5.keys(), type(d5.keys())) 
+     # -> dict_keys(['num', 'alpha', 'month']) <class 'dict_keys'>
+```
+
+##### dict.values()   : 딕셔너리의 value 값만 반환
+
+```python
+print(d5.values(), type(d5.values()))
+     # -> dict_values([[1, 2], ('a', 'b', 'c'), {'Jan': 1, 'Feb': 2}]) <class 'dict_values'>
+```
+
+##### dict.items()   : 딕셔너리의 key:value 쌍들을 반환
+
+```python
+print(d5.items(), type(d5.items()))
+     # -> dict_items([('num', [1, 2]), ('alpha', ('a', 'b', 'c')), ('month', {'Jan': 1, 'Feb': 2})]) <class 'dict_items'>
+```
+
+##### _key_ in _dict_  : 딕셔너리 key가 존재하는지 여부를 True/False로 알려줌
+
+```python
+print('num' in d5)    # -> True
+```
+
+.
+
+.
+
+# SET
+
+set_ex = {item1, item2, item3}
+
+- items may NOT be redundant => 값의 중복을 제거해주는 자료형
+- 가능한 item: string, tuple (hashable types - 고정된 길이를 가짐)
+  - Note) list, dict types are UNhashable
+- unordered, unindexed => no indexing, no slicing
+
+##### Creating a Set
+
+```python
+s1 = set()                  # only way to create an empty set
+s2 = set([1, 2, (10, 20)])  # set(1, 2, 3) : error => one argument only
+s3 = set((1, 2, (10, 20)))
+s4 = {1, 2, 3, 4, 5}
+
+s5 = set('abcde')
+print(s5)  # -> {'e', 'b', 'd', 'c', 'a'}  (unordered -> random order)
+
+s6 = set({'k1': 'v1', 'k2': 'v2'})
+print(s6)  # -> {'k1', 'k2'} (딕셔너리 타입을 지정하면 key값만 뽑아서 아이템으로 저장)
+```
+
+##### 중복 값 제거 기능
+
+```python
+redundant_list = [1, 2, 2, 2, 3, 4, 4, 5, 5, 5]
+print(set(redundant_list))          # -> {1, 2, 3, 4, 5}
+
+new_list = list(set(redundant_list))
+print(new_list)                     # -> [1, 2, 3, 4, 5]
+```
+
+##### Indexing, Slicing 하려면 list/tuple 등 인덱싱 가능한 자료형으로 변환을 먼저 해야 함
+
+```python
+s1 = {1, 2, 3, 4, 5}
+a_list = list(s1)[:3]  # ==> [1, 2, 3]
+print(set(a_list))     # ->  {1, 2, 3}
+```
+
+.
+
+## SET 집합 연산 : 차집합(-), 교집합(&), 합집합(|)
+
+##### 차집합, '`-`', `s1.difference(s2)` => elements unique to `s1`
+
+```python
+s1 = {1, 2, 3, 4, 5}
+s2 = {3, 4, 5, 6, 7}
+print(s1 - s2)              # -> {1, 2}
+print(s1.difference(s2))    # -> {1, 2}
+```
+
+##### 교집합, '`&`', `s1.intersection(s2)`
+
+```python
+s1 = {1, 2, 3, 4, 5}
+s2 = {3, 4, 5, 6, 7}
+print(s1 & s2)              # -> {3, 4, 5}
+print(s1.intersection(s2))  # -> {3, 4, 5}
+print(s2.intersection(s1))  # -> {3, 4, 5}
+```
+
+##### 합집합, '|', s1.union(s2)  - 중복되는 아이템은 한번만 포함
+
+```python
+s1 = {1, 2, 3, 4, 5}
+s2 = {3, 4, 5, 6, 7}
+print(s1 | s2)          # -> {1, 2, 3, 4, 5, 6, 7}
+print(s1.union(s2))     # -> {1, 2, 3, 4, 5, 6, 7}
+```
+
+.
+
+## Set - Adding Items
+
+##### set.add()    : add one item that is hashable (길이 고정)
+
+```python
+s1 = {1, 2, 3}
+s1.add((1, 2))
+print(s1)       # -> {(1, 2), 1, 2, 3}
+```
+
+- 추가 가능: 숫자, 문자, 문자열, 튜플
+- 추가 불가능: 리스트, 딕셔너리
+
+##### set.update()  : add multiple items in a string, list, tuples, etc.
+
+- 아이템만 개별적으로 뽑아서 추가한다 (from strings, tuples, lists)
+- list, tuple 등에 들어있지 않은 숫자는 제외 (int, float 등 단독적으로 추가 불가)
+
+```python
+s1 = {1, 2, 3}
+s1.update('abc')
+print(s1)      # -> {1, 2, 3, 'a', 'c', 'b'}
+
+s1 = {1, 2, 3}
+s1.update((10, 20))
+print(s1)      # -> {1, 2, 3, 10, 20}
+
+s1 = {1, 2, 3}
+s1.update({'k1':'v1', 'k2':'v2'})
+print(s1)      # -> {1, 2, 3, 'k1', 'k2'} (dict => key값만 뽑아서 추가)
+```
+
+.
+
+## Set - Delete Items
+
+##### set.remove() vs set.discard()
+
+- set.discard() : no error is raised even if item is not present in the set
+
+```python
+s2 = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10}
+
+s2.discard(10)  # same result as s2.remove(10)
+print(s2)       # -> {1, 2, 3, 4, 5, 6, 7, 8, 9}
+
+
+#s2.remove(0)   # -> KeyError: 0 is not present in s2
+s2.discard(0)   # -> nothing happens
 ```
 
 

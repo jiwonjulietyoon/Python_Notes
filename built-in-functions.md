@@ -105,6 +105,7 @@ print('Input is: ', my_input)
 
 ## eval()
 - 자료형을 함수가 스스로 판단해서 자동으로 맞춰준다.
+
     - `print(type(eval('1234')))`  =>  `<class 'int'>`
 - input()와 함께 사용될 때가 많다.
     - eval() 사용하지 않을 때, input()로 입력 받은 데이터는 디폴트로 string type이 된다.
@@ -122,6 +123,28 @@ print('Input is: ', my_input)
 round(_number_, _precision(integer)_)
 
 e.g) `round(2.33333, 2)`  => `2.33`
+
+.
+
+## range()
+
+```python
+>>> print(list(range(5)))
+[0, 1, 2, 3, 4]
+
+>>> print(list(range(1, 5)))
+[1, 2, 3, 4]
+
+>>> print(list(range(1, 10, 2)))  # 3rd parameter : increment
+[1, 3, 5, 7, 9]
+
+>>> print(list(range(5, 0, -1)))
+[5, 4, 3, 2, 1]
+```
+
+
+
+
 
 .
 
