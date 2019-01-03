@@ -142,6 +142,12 @@ e.g) `round(2.33333, 2)`  => `2.33`
 [5, 4, 3, 2, 1]
 ```
 
+.
+
+## enumerate(_iterable_[, start=0])
+
+Returns an enumerate object, after pairing each value with a count number (starting at 0 by default). The count number and object value are paired into tuples.
+
 
 
 
