@@ -213,42 +213,35 @@ for x in range(h, 0, -1):
 ##### Calendar 2019
 
 ```python
-cnt = 2
-tmp = 0
+cnt = 2   # Jan 1, 2019 is a Tuesday
+month = ['January', 'February', 'March', 'April', 'May', 'June', 
+        'July', 'August', 'September', 'October', 'November', 'December']
 
-print(f'{"= 2019년 달력 =":^21}\n')
+print(f'{"= 2019 =":^21}\n')
 
-for x in range(1, 13):
-    
-    # Header: Month & days of the week
-    print(f'        {x:>2} 월')
+for x in range(12):
+    print(f'{month[x]+" 2019":^21}')
     print(' S  M  T  W  T  F  S')
     
-    # Last date of the month
-    if x == 2:
+    if x+1 == 2:
         enddate = 28
-    elif x in [1, 3, 5, 7, 8, 10, 12]:
+    elif x+1 in [1, 3, 5, 7, 8, 10, 12]:
         enddate = 31
-    elif x in [4, 6, 9, 11]:
+    elif x+1 in [4, 6, 9, 11]:
         enddate = 30
     
-    # Determines which column "Day 1" will be placed in
     print(' '*cnt*3, end='')
     
-    # Prints dates from 1 to last date of the month
     for y in range(1, enddate+1):
         print(f'{y:>2}', end=' ')
-        tmp += 1
-        if y%7==(7-cnt)%7:
-            print()     # line break after reaching 'Saturday' column
-            tmp = 0
-    cnt = tmp  # Column in which the last date has been placed
-    
-    # Extra line break when the last date is NOT a Saturday
-    if tmp != 0:
+        cnt += 1
+        if cnt == 7:
+            print()
+            cnt = 0
+
+    if cnt != 0:
         print()
     
-    # Line break in between the months
     print()
 ```
 

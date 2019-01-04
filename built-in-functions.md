@@ -148,14 +148,31 @@ e.g) `round(2.33333, 2)`  => `2.33`
 
 ## enumerate(_iterable_[, start=0])
 
-Returns an enumerate object, after pairing each value with a count number (starting at 0 by default). The count number and object value are paired into tuples.
+Returns an enumerate object, after pairing each item with a count number (starting at 0 by default). 
 
+The _iterable_ object must support iteration, i.e. ordered and indexed. E.g. list, tuple, string, etc.
 
+The count number and object item are paired into tuples.
+
+Example)
+
+```python
+>>> list_ex = ['a', 'b', 'c', 'd', 'e']
+>>> for index, value in enumerate(list_ex):
+>>>     print(index, value)
+0 a
+1 b
+2 c
+3 d
+4 e
+```
+
+Example 2) Goal : Returning a new list after deleting the 0th, 4th, and 5th items
 
 ```python
 colors = ['Apple', 'Banana', 'Coconut', 'Deli', 'Ele', 'Grape']
 fruit = [value for (index, value) in enumerate(colors) if index not in (0, 4, 5)]
-print(fruit)    # -> ['Banana', 'Coconut', 'Deli']
+print(fruit)        # -> ['Banana', 'Coconut', 'Deli']
 ```
 
 
@@ -266,9 +283,10 @@ guns, germs, and steel
 Sunday Evening Post
 ```
 
-#### _str_.split('_value_') 
+#### _str_.split(['_value_']) 
 
 - str을 value 기준으로 쪼갠 다음, 리스트 형태로 반환
+- If '_value_' is not provided, words are separated by arbitrary strings of whitespace characters
 
 ```python
 >>> text = 'A-B-C-D'
