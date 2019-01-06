@@ -38,6 +38,21 @@ print(always_returns_Hi())   # -> Hi
 
 .
 
+# Docstring
+```python
+>>> def mysum(a, b):
+>>>     """Comments on this function
+>>>     The docstring should describe what the function does, not how.
+>>>     Docstrings can be accessed by the __doc__ attribute on objects."""
+
+>>> print(mysum.__doc__)
+Comments on this function
+    The docstring should describe what the function does, not how.
+    Docstrings can be accessed by the __doc__ attribute on objects.
+```
+
+.
+
 # Passing arguments
 
 Example) Simple function that prints the sum of 3 arguments (default argument values)
