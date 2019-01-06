@@ -25,6 +25,9 @@ if 'a':
 ```
 
 - _condition_ can include `and`, `or`, `in`, `not`, etc.
+- Boolean:
+    - `0, 0.0, (), [], {}, '', None` will convert to `False`
+    - All else will convert to `True`
 
 ##### 'pass' means do nothing
 
