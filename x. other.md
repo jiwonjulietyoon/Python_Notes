@@ -141,5 +141,9 @@ list_a = ['A', 'B',
 Today is 19.01.02. / Wednesday, Jan 02, 2019
 ```
 
+.
 
+## dir(_object_)
+
+Lists all methods that can be used on the _object_
 

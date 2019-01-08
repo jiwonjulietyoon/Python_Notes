@@ -270,13 +270,17 @@ print(thislist)          # -> []
   print(f)          # -> [1, 3, 2, 4, 2, 5]
   ```
 
-##### list.pop()   : 마지막 아이템을 반환한 후 리스트에서 삭제하기
+##### list.pop(_[index]_)   : _index_ 위치에 있는 아이템을 반환한 후 리스트에서 삭제하기
+
+- If the argument, _index_, is not provided, returns and removes the last item from the list.
 
 ```python
 g = [1, 2, 3, 4, 5]
 print(g.pop())      # -> 5
 print(g)            # -> [1, 2, 3, 4]
 ```
+
+
 
 .
 

@@ -191,19 +191,23 @@ print(fruit)        # -> ['Banana', 'Coconut', 'Deli']
 
 # 문자열 내장 함수
 
-(The following functions do __NOT__ modify the original string)
+(The following methods do __NOT__ modify the original string)
 
-- __len()__: 문자열 길이 반환
-- __count()__: 문자열에 있는 특정 문자의 개수를 반환
-- __find()__: 특정 문자의 인덱스 번호 반환
-- __join()__: 특정 기호를 문자열의 각 아이템 사이에 삽입
-- __upper()__: 모든 아이템을 대문자로 변경
-- __lower()__: 모든 아이템을 소문자로 변경
-- __lstrip()__: 왼쪽으로 공백 (또는 지정 문자) 제거
-- __rstrip()__: 오른쪽으로 공백 (또는 지정 문자) 제거
-- __strip()__: 앞뒤로 공백 (또는 지정 문자) 제거
-- __replace()__: 특정 문자를 새로운 문자로 교체
-- __split()__: 특정 문자/기호/값을 기준으로 아이템을 쪼개기
+- __.len()__: 문자열 길이 반환
+- __.count()__: 문자열에 있는 특정 문자의 개수를 반환
+- __.find(), .index():__ 특정 문자의 인덱스 번호 반환
+- __.join()__: 특정 기호를 문자열의 각 아이템 사이에 삽입
+- __.upper()__: 모든 아이템을 대문자로 변경
+- __.lower()__: 모든 아이템을 소문자로 변경
+- **.capitalize():** capitalizes the first letter of the string (the rest in lower-case)
+- **.title():** capitalizes letters following each apostrophe or whitespace
+- **.swapcase():** 
+- __.lstrip()__: 왼쪽으로 공백 (또는 지정 문자) 제거
+- __.rstrip()__: 오른쪽으로 공백 (또는 지정 문자) 제거
+- __.strip()__: 앞뒤로 공백 (또는 지정 문자) 제거
+- __.replace()__: 특정 문자를 새로운 문자로 교체
+- __.split()__: 특정 문자/기호/값을 기준으로 아이템을 쪼개기
+- 확인 메소드 (True/False 반환): `.isaplha(), .isdecimal(), .isdigit(), .isnumeric(), .isspace(), .issuper(), .istitle(), .islower()`
 
 #### len(_str_)
 
@@ -233,16 +237,29 @@ print(fruit)        # -> ['Banana', 'Coconut', 'Deli']
 0
 ```
 
-- 여러 개가 존재하는 _value_ 라면, returns the first occurring index
+- 여러 개가 존재하는 _value_ 라면, returns the first occurring index (_value_의 첫 번째 위치를 반환)
+- _index_ 가 없다면 `-1`을 반환
+  - c.f) **_str_.index('_value_') :**  _value_의 첫 번째 위치를 반환. 없으면 오류가 뜬다.
 
-#### _str_.upper() and _str_.lower()
+#### _str_.upper(), _str_.lower(), _str_.capitalize(), _str_.title(), _str_.swapcase()
 
 ```python
 >>> text = 'Guns, Germs, and Steel'
+
 >>> print(text.upper())
 GUNS, GERMS, AND STEEL
+
 >>> print(text.lower())
 guns, germs, and steel
+
+>>> print(text.capitalize())
+Guns, germs, and steel
+
+>>> print(text.title())
+Guns, Germs, And Steel
+
+>>> print(text.swapcase())
+gUNS, gERMS, AND sTEEL
 ```
 
 #### _str_.lstrip(), _str_.rstrip(), and _str_.strip()
@@ -275,12 +292,20 @@ guns, germs, and steel
 '|Guns, Germs, and Steel|'
 ```
 
-#### _str_.replace('_old_', '_new_')
+#### _str_.replace('_old_', '_new_'[, _count_])
+
+- _count_: number of replacements to perform
 
 ```python
 >>> text = 'Saturday Evening Post'
 >>> print(text.replace('Saturday', 'Sunday'))
 Sunday Evening Post
+```
+
+```python
+>>> text = 'woooooooow'
+>>> print(text.replace('o', '', 4))
+woooow
 ```
 
 #### _str_.split(['_value_']) 
@@ -298,10 +323,34 @@ Sunday Evening Post
 
 #### '_value_'.join(_str_)
 
+The argument itself need not be _str_. Could also be a _list_ consisting of string elements only.
+
 ```python
 >>> text = 'ABCDE'
 >>> print('-'.join(text))
 A-B-C-D-E
 ```
+
+
+
+## 확인 메소드
+
+`.isalpha()`: returns 	true if all characters in the string are alphabetic (no spaces, no digits, etc.) and there is at least one character.
+
+`.isdigit(), .isnumeric(), .isdecimal()`: returns true if all characters in the string are *numbers, and there is at least one character.
+
+- *The difference of the three methods comes from which specific unicode characters are considered "numbers"
+- In typical settings, the three methods will return true if the given string is an integer number (not a float)
+
+`.isspace()`: returns true if there are only whitespace characters in the string, and there is at least one character
+
+`.isupper()`: returns true if all letters of the string (thus excluding whitespace and other punctuations) are uppercase
+
+- similar for `.islower()` and `.istitle()`
+
+
+
+
+
 
 
