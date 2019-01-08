@@ -164,13 +164,27 @@ print(list_a[2][:2])   # -> ['X', 'Y']
 
 ##### list.extend(_[new_list]_) -> 인자의 아이템만 뽑아서 list 끝에 아이템으로 추가 ('+' 연산자와 유사)
 
-- only takes lists as the argument
+- only takes an iterable(list, range, tuple, string) as the argument
 
   - ```python
     ext = [1, 2, 3]
     ext.extend(['e', 'x', 't'])
     print(ext)      # -> [1, 2, 3, 'e', 'x', 't']
+    
+    ext.extend('end')
+    print(ext)      # -> [1, 2, 3, 'e', 'x', 't', 'e', 'n', 'd']
     ```
+
+- another way to 'extend': use the `+=` operator
+
+  - ```python
+    ext = [1, 2, 3]
+    tup = (4, 5, 6)
+    ext += tup      # 'ext + tup' would raise an error
+    print(ext)      # -> [1, 2, 3, 4, 5, 6]
+    ```
+
+  - 
 
 ##### list.insert(_index_, _new_item_) -> 인자를 지정 위치에 아이템으로 추가
 
@@ -181,6 +195,10 @@ print(list_a[2][:2])   # -> ['X', 'Y']
     ins.insert(2, 3)
     print(ins)     # -> [1, 2, 3, 4, 5]
     ```
+
+- insert as first item of the list: `list.insert(0, first_item)`
+- insert as last item of the list: `list.insert(len(list), last_item)`
+- If _index_ is out of range (greater than the length of current list), add as the last item
 
 .
 
@@ -280,7 +298,13 @@ print(g.pop())      # -> 5
 print(g)            # -> [1, 2, 3, 4]
 ```
 
+- The popped item can be stored into a variable
 
+  - ```python
+    g = [1, 2, 3, 4, 5]
+    popped = g.pop()
+    print(popped)   # -> 5
+    ```
 
 .
 
