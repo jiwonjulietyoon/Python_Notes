@@ -195,7 +195,7 @@ Note) 한 함수 내에서 `return`을 여러 번 쓸 경우, 에러는 나지 �
 
 ## Lambda
 
-간결한 함수의 정의
+간결한 함수의 정의 (익명 함수)
 
 ```python
 lambda_ex = lambda a: a**2
@@ -212,11 +212,42 @@ result = map(lambda a: a**2, [3,4,5])
 print(list(result))                    # -> [9, 16, 25]
 ```
 
+.
 
+.
 
+## High Order Function
 
+##### 함수 복제하기
 
+```python
+def my_func(a, b):
+    print(a+b)
 
+res2 = my_func
+
+print(res2)         # -> <function my_func at 0x00909DF8>
+print(my_func)      # -> <function my_func at 0x00909DF8>
+```
+
+- `res2` and `my_func` point to the same function
+
+- `res2` now functions exactly the same as `my_func`
+
+##### 함수를 다른 함수의 인자로 전달하기
+
+```python
+from operator import add, mul
+
+jiwook = add
+nayoung = mul
+
+def dowoo(func, num1, num2):
+    return func(num1, num2)
+
+dowoo(jiwook, 20, 20)    # -> 40
+dowoo(nayoung, 3, 4)     # -> 12
+```
 
 
 
