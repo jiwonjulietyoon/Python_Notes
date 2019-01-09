@@ -326,7 +326,7 @@ print(g)            # -> [1, 2, 3, 4]
   print(a)     # -> [6, 5, 4, 3, 2, 1]
   ```
 
-- c.f. `sorted(list)` : sorts list without modifying the original list
+- c.f. `sorted(list)` : returns sorted list without modifying the original list
 
   - ```python
     list_a = [3, 1, 6, 4, 5, 2]
@@ -335,13 +335,17 @@ print(g)            # -> [1, 2, 3, 4]
 
 ##### list.reverse()   : flips order of items; 아이템 순서를 반대로 뒤집기
 
-- Note) `reverse()` != `sort(reverse=True)`
+- Note) `.reverse()` != `sort(reverse=True)`
 
 - ```python
   a = [3, 6, 1, 5, 4, 2]
   a.reverse()
   print(a)     # -> [2, 4, 5, 1, 6, 3]
   ```
+
+- c.f `reverse(list)` : returns reversed list without modifying the original list
+
+  - The return value is NOT a list! => need to convert into a list `list(reversed(list_name))`
 
 .
 
@@ -361,6 +365,59 @@ print(a.count('3'))    # -> 3
 a = [1, 2, 3, 3, 3, 3, '3', '3', '3', 4, 5]
 print(len(a))          # -> 11
 ```
+
+.
+
+## List Comprehension
+
+=> Concise way of creating lists based on existing lists
+
+`evenlist = [i for i in range(1, 11) if i%2==0]`
+`cubiclist = [i**3 for i in range(1, 11)]`
+
+#### Ex) Before: For Loop
+
+```python
+girls = ['jane', 'iu', 'mary']
+boys = ['justin', 'david', 'kim']
+pair = []
+
+for girl in girls:
+    for boy in boys:
+        pair.append((boy, girl))
+```
+
+#### Ex) After: List Comprehension
+
+```python
+girls = ['jane', 'iu', 'mary']
+boys = ['justin', 'david', 'kim']
+
+pair = [(boy, girl) for boy in boys for girl in girls]
+```
+
+##### Pythagoras: x < y < z < 50 일 때 피타고라스 방정식의 해를 찾기
+
+```python
+pythagoras = [(x, y, z) for x in range(1, 50) for y in range(x+1, 50) for z in range(y+1, 50) if x**2+y**2==z**2]
+```
+
+##### Getting rid of all vowels
+
+```python
+words = 'Life is too short, you need python!'
+vowels = 'aeiou'
+words2 = "".join([w for w in words if w not in vowels])
+print(words2) # -> Lf s t shrt, y nd pythn!
+```
+
+
+
+
+
+
+
+
 
 .
 
