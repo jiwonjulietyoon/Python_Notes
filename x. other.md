@@ -155,6 +155,24 @@ Lists all methods that can be used on the _object_
 
 #### Q. Is the object mutable or immutable?
 
+##### Immutable Objects: String, Int, Tuple
+
+- CAN create a separate copy/clone. Altering the copy will NOT affect the original.
+
+- ```python
+  original = 13
+  copy = original
+  
+  copy = 12
+  
+  print(original)  # -> 13     # not affected
+  print(copy)      # -> 12
+  
+  # Comparing the id of 'original' and 'copy':
+  print(id(original), id(copy))    # -> 1837091136 1837091120 (different)
+  print(original is copy)          # -> False
+  ```
+
 ##### Mutable Objects: List, Dictionary
 
 - Can NOT create a separate copy/clone (All assigned variables point to the same object)
@@ -177,21 +195,17 @@ Lists all methods that can be used on the _object_
 
   - Hence `original` and `copy` point to the exact same object (list).
   - `copy` is a misnomer, as this is not an actual separate copy of `original`. 
+  - Think: `copy = original = [1, 2, 3]` => `copy` equals whatever `original` is, and `original` equals `[1, 2, 3]`
 
-##### Immutable Objects: String, Int, Tuple
+##### Deep Copy: Creating true copies of mutable objects
 
-- CAN create a separate copy/clone. Altering the copy will NOT affect the original.
 
-  - ```python
-    original = 13
-    copy = original
-    
-    copy = 12
-    
-    
-    ```
 
-  - 
+https://docs.python.org/3/library/copy.html
+
+
+
+
 
 
 
