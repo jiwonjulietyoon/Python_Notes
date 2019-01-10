@@ -151,16 +151,51 @@ Lists all methods that can be used on the _object_
 
 
 
-## 복사: shallow copy vs deep copy
+## 복사: Shallow Copy vs Deep Copy
 
-관건: Is the object mutable or immutable?
+#### Q. Is the object mutable or immutable?
 
-- mutable: list, dictionary
-  - different from cloning! points to the same object. thus the original object can and will be altered when the secondary variable/pointer is altered.
-- immutable: string, int, tuple
-  - copied/cloned (복제). the original object cannot by altered
+##### Mutable Objects: List, Dictionary
 
-##### mutable
+- Can NOT create a separate copy/clone (All assigned variables point to the same object)
+
+- Attempts to alter the "copy" will also alter the original object.
+
+- ```python
+  original = [1, 2, 3]
+  copy = original
+  
+  copy[0] = 100    # attempt to alter the "copied" list
+  
+  print(original)  # -> [100, 2, 3]    # original is altered
+  print(copy)      # -> [100, 2, 3]
+  
+  # Comparing the id of 'original' and 'copy':
+  print(id(original), id(copy))    # -> 5705040 5705040
+  print(original is copy)          # -> True
+  ```
+
+  - Hence `original` and `copy` point to the exact same object (list).
+  - `copy` is a misnomer, as this is not an actual separate copy of `original`. 
+
+##### Immutable Objects: String, Int, Tuple
+
+- CAN create a separate copy/clone. Altering the copy will NOT affect the original.
+
+  - ```python
+    original = 13
+    copy = original
+    
+    copy = 12
+    
+    
+    ```
+
+  - 
+
+
+
+
 
 ```python
 mut = [1, 2, 3]
@@ -177,7 +212,7 @@ print("mut id", id(mut), "mut2 id", id(mut2))  # -> mut id 5705040 mut2 id 57050
 # thus, 
 original_list = [1, 2, 3]
 new_list = original_list   
-# -> 'new_list' is a misnomer, as 'new_list' is NOT a mere copy of 'original_list'.
+# -> 'new_list' is a misnomer, as 'new_list' is NOT an actual copy of 'original_list'.
 # 'new_list' and 'original_list' both refer to the exact same list, '[1, 2, 3]'
 # to make a copy of lists,
 new_list = original_list[:]

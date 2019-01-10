@@ -500,6 +500,51 @@ d4 = {'a': [1, 2, 3, [10, 20, (0, 0)]],
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | - can't be redundant (변수명 중복 불가인 것처럼) <br>-  key 이름을 중복 작성하면, 가장 마지막에 할당된 아이템으로 덮어쓰기 된다 <br>- List는 쓸 수 없다. 수정 불가능한 Tuple은 쓸 수 있다. | - 모든 자료형을 쓸 수 있다<br>- key가 있으면 반드시 value도 있어야 한다. |
 
+
+
+##### Dictionary Comprehension
+
+```python
+cubic = {x: x**3 for x in range(1, 8)}
+print(cubic)
+
+# -> {1: 1, 2: 8, 3: 27, 4: 64, 5: 125, 6: 216, 7: 343}
+```
+
+```python
+# 다음의 딕셔너리에서 미세먼지 농도가 80 초과 지역만 뽑아 봅시다.
+# 예) {'경기': 82, '부산': 90}
+dusts = {'서울': 72, '경기': 82, '대전': 29, '중국': 200}
+{key: value for key, value in dusts.items() if  value > 80}
+```
+
+```python
+# 다음의 딕셔너리에서 미세먼지 농도가 80초과는 나쁨 80이하는 보통으로 하는 value를 가지도록 바꿔봅시다.
+# 예) {'서울': '나쁨', '경기': '보통', '대전': '나쁨', '부산': '보통'}
+
+dusts = {'서울': 72, '경기': 82, '대전': 29, '중국': 200}
+{key: '나쁨' if value > 80 else '보통'  for key, value in dusts.items()}
+```
+
+```python
+# 만약 elif 말해주면 이렇게 말해주자^_^ 강사용
+{key: '매우나쁨' if value > 150 else '나쁨' if value > 80 else '보통' if value > 30 else '좋음'  for key, value in dusts.items()}
+
+# => 그러나 조건이 늘어날 경우, 가독성이 떨어지기 때문에 dict comprehension 은 비추천한다.
+```
+
+
+
+
+
+
+
+
+
+.
+
+## Dictionary - Indexing by 'key'
+
 ##### Dictionaries are unordered, but indexed by 'key' (no index numbers)
 
 ```python
@@ -512,6 +557,27 @@ print(d1['month']['Feb'])           # -> 2
 print(d1.get('month'))              # -> {'Jan': 1, 'Feb': 2}
 print(d1.get('month').get('Jan'))   # -> 1
 ```
+
+
+
+```python
+my_dict = {'apple': '사과', 'banana': '바나나', 'melon': '멜론'}
+my_dict['pineapple']   # -> error: no pineapple
+
+
+
+# dict.get(key[, default])
+
+my_dict.get('pineapple')  # -> no error
+
+my_dict.get('apple')   # -> '사과'
+
+my_dict.get('pineapple', 0)  # -> 0
+```
+
+
+
+
 
 .
 
@@ -534,6 +600,10 @@ d3[3] = 'c'
 print(d3)             # -> {1: 'a', 2: 'b', 3: 'c'}
 ```
 
+##### dict.update(key = 'value') 
+
+값을 제공하는 key, value로 덮어씁니다.
+
 .
 
 ## Dictionary - Deleting Items
@@ -552,6 +622,12 @@ print(d4)             # -> {11: 'a', 22: 'b'}
 d4.clear()
 print(d4)             # -> {}
 ```
+
+##### dict.pop(_key_[, _default_])
+
+key가 딕셔너리에 있으면 제거하고 그 값을 돌려줍니다. 그렇지 않으면 default를 반환합니다. default가 없는 상태에서 딕셔너리에 없으면 KeyError가 발생합니다.
+
+
 
 .
 
