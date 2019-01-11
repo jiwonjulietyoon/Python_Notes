@@ -284,3 +284,23 @@ print(id(C), id(D))  # -> 4517153608 4516516744
 
 
 
+
+
+.
+
+.
+
+
+
+### for loop 를 돌릴 때:
+
+e.g)
+
+```python
+for i in range(10):
+    print("hi")
+```
+
+- for loop 안에서 'i' 변수를 실제로 사용하지 않을 때
+- 'i' 대신 '_' 를 쓴다.
+- underscore => ignore
