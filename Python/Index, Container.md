@@ -50,9 +50,10 @@ Brave New World
 
 # LIST
 
-list_ex = [item1, item2, item3, ...]
+`list_ex = [item1, item2, item3, ...]`
 
 - items may be a number, string, list, dictionary, defined variable, etc.
+- ordered, changeable(mutable), indexed
 
 ## Creating various lists
 
@@ -74,13 +75,51 @@ list_f6 = list([1, 2, 3])    # -> [1, 2, 3]
 list_f7 = list(1)            # => TypeError: 'int' is not iterable
 ```
 
-#### 다차원 리스트
+#### 다차원 리스트 (Compound List)
 
 - 1차원: `list_1 = ['a', 'b', 'c']`
 - 2차원: `list_2 = ['a', ['X', 'Y', 'Z'], 'b', 'c']`
   - (two levels of lists)
 - 3차원: `list_3 = ['a', 'b', ['X', 'Y', 'Z', [1, 2, 3]], 'c']`
   - (three levels of lists)
+
+#### List Comprehension: Concise way to create lists based on existing lists
+
+`evenlist = [i for i in range(1, 11) if i%2==0]`
+`cubiclist = [i**3 for i in range(1, 11)]`
+
+##### Ex) Before: For Loop  => After: List Comprehension
+
+```python
+# For Loop
+
+girls = ['jane', 'iu', 'mary']
+boys = ['justin', 'david', 'kim']
+pair = []
+for girl in girls:
+    for boy in boys:
+        pair.append((boy, girl))
+
+# List Comprehension
+girls = ['jane', 'iu', 'mary']
+boys = ['justin', 'david', 'kim']
+pair = [(boy, girl) for boy in boys for girl in girls]
+```
+
+##### Pythagoras: x < y < z < 50 일 때 피타고라스 방정식의 해를 찾기
+
+```python
+pythagoras = [(x, y, z) for x in range(1, 50) for y in range(x+1, 50) for z in range(y+1, 50) if x**2+y**2==z**2]
+```
+
+##### Getting rid of all vowels
+
+```python
+words = 'Life is too short, you need python!'
+vowels = 'aeiou'
+words2 = "".join([w for w in words if w not in vowels])
+print(words2) # -> Lf s t shrt, y nd pythn!
+```
 
 .
 
@@ -104,6 +143,27 @@ print(list_a[2][3])    # -> 1차원 리스트: [1, 2, 3]
 print(list_a[2][3][0]) # -> single item: 1
 print(list_a[2][:2])   # -> ['X', 'Y']
 ```
+
+##### list.count('_item_')     : count specific items
+
+```python
+a = [1, 2, 3, 3, 3, 3, '3', '3', '3', 4, 5]
+print(a.count(3))      # -> 4
+print(a.count('3'))    # -> 3
+```
+
+##### len(list)      : count total number of items in the list
+
+```python
+a = [1, 2, 3, 3, 3, 3, '3', '3', '3', 4, 5]
+print(len(a))          # -> 11
+```
+
+##### list.index('_item_')
+
+returns the index number of the first occuring _item_
+
+raises ValueError when _item_ is not in list
 
 .
 
@@ -184,7 +244,6 @@ print(list_a[2][:2])   # -> ['X', 'Y']
     print(ext)      # -> [1, 2, 3, 4, 5, 6]
     ```
 
-  - 
 
 ##### list.insert(_index_, _new_item_) -> 인자를 지정 위치에 아이템으로 추가
 
@@ -278,9 +337,11 @@ print(thislist)          # -> []
 
 ##### list.remove('_item_')
 
-- only deletes the first occurring 'item' (not all)
+- only deletes the first occurring _item_ (not all)
 
 - only accepts one argument
+
+- If _item_ is not in the list, ValueError is raised
 
 - ```python
   f = [1, 2, 3, 2, 4, 2, 5]
@@ -345,79 +406,7 @@ print(g)            # -> [1, 2, 3, 4]
 
 - c.f `reverse(list)` : returns reversed list without modifying the original list
 
-  - The return value is NOT a list! => need to convert into a list `list(reversed(list_name))`
-
-.
-
-## List - Count
-
-##### list.count('_item_')     : count specific items
-
-```python
-a = [1, 2, 3, 3, 3, 3, '3', '3', '3', 4, 5]
-print(a.count(3))      # -> 4
-print(a.count('3'))    # -> 3
-```
-
-##### len(list)      : count total number of items in the list
-
-```python
-a = [1, 2, 3, 3, 3, 3, '3', '3', '3', 4, 5]
-print(len(a))          # -> 11
-```
-
-.
-
-## List Comprehension
-
-=> Concise way of creating lists based on existing lists
-
-`evenlist = [i for i in range(1, 11) if i%2==0]`
-`cubiclist = [i**3 for i in range(1, 11)]`
-
-#### Ex) Before: For Loop
-
-```python
-girls = ['jane', 'iu', 'mary']
-boys = ['justin', 'david', 'kim']
-pair = []
-
-for girl in girls:
-    for boy in boys:
-        pair.append((boy, girl))
-```
-
-#### Ex) After: List Comprehension
-
-```python
-girls = ['jane', 'iu', 'mary']
-boys = ['justin', 'david', 'kim']
-
-pair = [(boy, girl) for boy in boys for girl in girls]
-```
-
-##### Pythagoras: x < y < z < 50 일 때 피타고라스 방정식의 해를 찾기
-
-```python
-pythagoras = [(x, y, z) for x in range(1, 50) for y in range(x+1, 50) for z in range(y+1, 50) if x**2+y**2==z**2]
-```
-
-##### Getting rid of all vowels
-
-```python
-words = 'Life is too short, you need python!'
-vowels = 'aeiou'
-words2 = "".join([w for w in words if w not in vowels])
-print(words2) # -> Lf s t shrt, y nd pythn!
-```
-
-
-
-
-
-
-
-
+  - The return value is **NOT** a list! => need to convert into a list `list(reversed(list_name))`
 
 .
 
@@ -425,7 +414,7 @@ print(words2) # -> Lf s t shrt, y nd pythn!
 
 # TUPLE
 
-tuple_ex = (item1, item2, item3)
+`tuple_ex = (item1, item2, item3)`
 
 - can NOT edit/delete tuple items! 
 - 'Tuple' object does NOT support item assignment (수정) and deletion
@@ -462,14 +451,14 @@ print(t2 * 3)         # -> (100, 200, 100, 200, 100, 200)
 
 # DICTIONARY
 
-dict_ex = {key1:value1, key2:value2, ...}
+`dict_ex = {key1: value1, key2: value2, ...}`
 
 - Key: 문자, 숫자, 튜플
 - Value: 문자, 숫자, 리스트, 딕셔너리 등 any data type
 - Item = {key:value} 하나의 쌍
 - unordered, changeable, indexed
 
-##### Creating a Dictionary
+## Creating a Dictionary
 
 ```python
 d1 = dict()
@@ -500,52 +489,37 @@ d4 = {'a': [1, 2, 3, [10, 20, (0, 0)]],
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | - can't be redundant (변수명 중복 불가인 것처럼) <br>-  key 이름을 중복 작성하면, 가장 마지막에 할당된 아이템으로 덮어쓰기 된다 <br>- List는 쓸 수 없다. 수정 불가능한 Tuple은 쓸 수 있다. | - 모든 자료형을 쓸 수 있다<br>- key가 있으면 반드시 value도 있어야 한다. |
 
-
-
-##### Dictionary Comprehension
+#### Dictionary Comprehension
 
 ```python
 cubic = {x: x**3 for x in range(1, 8)}
-print(cubic)
-
-# -> {1: 1, 2: 8, 3: 27, 4: 64, 5: 125, 6: 216, 7: 343}
+print(cubic) # -> {1: 1, 2: 8, 3: 27, 4: 64, 5: 125, 6: 216, 7: 343}
 ```
 
 ```python
-# 다음의 딕셔너리에서 미세먼지 농도가 80 초과 지역만 뽑아 봅시다.
-# 예) {'경기': 82, '부산': 90}
+# 다음의 딕셔너리에서 미세먼지 농도가 80 초과 지역만 뽑기. 예) {'경기': 82, '부산': 90}
 dusts = {'서울': 72, '경기': 82, '대전': 29, '중국': 200}
 {key: value for key, value in dusts.items() if  value > 80}
 ```
 
 ```python
-# 다음의 딕셔너리에서 미세먼지 농도가 80초과는 나쁨 80이하는 보통으로 하는 value를 가지도록 바꿔봅시다.
-# 예) {'서울': '나쁨', '경기': '보통', '대전': '나쁨', '부산': '보통'}
-
+# 다음의 딕셔너리에서 미세먼지 농도가 80초과는 나쁨, 80이하는 보통으로 하는 value를 가지도록 바꿔봅시다. 예) {'서울': '나쁨', '경기': '보통', '대전': '나쁨', '부산': '보통'}
 dusts = {'서울': 72, '경기': 82, '대전': 29, '중국': 200}
 {key: '나쁨' if value > 80 else '보통'  for key, value in dusts.items()}
 ```
 
 ```python
-# 만약 elif 말해주면 이렇게 말해주자^_^ 강사용
+# 더 복잡한 조건을 붙일 경우 (if... elif... else)
 {key: '매우나쁨' if value > 150 else '나쁨' if value > 80 else '보통' if value > 30 else '좋음'  for key, value in dusts.items()}
 
-# => 그러나 조건이 늘어날 경우, 가독성이 떨어지기 때문에 dict comprehension 은 비추천한다.
+# => 그러나 가독성이 떨어지기 때문에 여러 조건의 dict comprehension 방식은 비추천한다.
 ```
-
-
-
-
-
-
-
-
 
 .
 
 ## Dictionary - Indexing by 'key'
 
-##### Dictionaries are unordered, but indexed by 'key' (no index numbers)
+##### Dictionaries are unordered, but can be indexed by 'key' (no index numbers)
 
 ```python
 d1 = {'num': [1, 2], 
@@ -558,80 +532,26 @@ print(d1.get('month'))              # -> {'Jan': 1, 'Feb': 2}
 print(d1.get('month').get('Jan'))   # -> 1
 ```
 
+##### `dict[key]` vs `dict.get(key[, default])`
 
+- When `key` exists: both return the same results
+- When `key` does not exist:
+  - `dict[key]` raises an error
+  - `dict.get(key)` returns 'None' (or _default_) instead of raising an error
 
 ```python
 my_dict = {'apple': '사과', 'banana': '바나나', 'melon': '멜론'}
-my_dict['pineapple']   # -> error: no pineapple
 
+my_dict['apple']             # -> '사과'
+my_dict.get('apple')         # -> '사과'
 
+my_dict['pineapple']         # -> KeyError: 'pineapple'
+my_dict.get('pineapple')     # -> nothing happens (returns 'None')
 
-# dict.get(key[, default])
-
-my_dict.get('pineapple')  # -> no error
-
-my_dict.get('apple')   # -> '사과'
-
-my_dict.get('pineapple', 0)  # -> 0
+my_dict.get('pineapple', 0)  # -> 0 (default value)
 ```
 
-
-
-
-
-.
-
-## Dictionary - Adding Items
-
-##### Adding a new {key: value}
-
-```python
-d2 = {}
-d2['Jan'] = '1st'
-d2['Feb'] = '2nd'
-print(d2)             # -> {'Jan': '1st', 'Feb': '2nd'}
-```
-
-##### Replacing the value of an existing key
-
-```python
-d3 = {1:'a', 2:'b', 3:'d'}
-d3[3] = 'c'
-print(d3)             # -> {1: 'a', 2: 'b', 3: 'c'}
-```
-
-##### dict.update(key = 'value') 
-
-값을 제공하는 key, value로 덮어씁니다.
-
-.
-
-## Dictionary - Deleting Items
-
-##### del dict['_key_']   : delete single {key: value} item
-
-```python
-d4 = {11:'a', 22:'b', 33:'A'}
-del d4[33]
-print(d4)             # -> {11: 'a', 22: 'b'}
-```
-
-##### dict.clear()   : empty entire dictionary
-
-```python
-d4.clear()
-print(d4)             # -> {}
-```
-
-##### dict.pop(_key_[, _default_])
-
-key가 딕셔너리에 있으면 제거하고 그 값을 돌려줍니다. 그렇지 않으면 default를 반환합니다. default가 없는 상태에서 딕셔너리에 없으면 KeyError가 발생합니다.
-
-
-
-.
-
-## Dictionary - dict.keys(), dict.values(), dict.items(), in operator
+### Dictionary - dict.keys(), dict.values(), dict.items(), in operator
 
 ```python
 d5 = {'num': [1, 2], 
@@ -665,6 +585,66 @@ print(d5.items(), type(d5.items()))
 ```python
 print('num' in d5)    # -> True
 ```
+
+.
+
+## Dictionary - Adding Items
+
+##### Adding a new {key: value}
+
+```python
+d2 = {}
+d2['Jan'] = '1st'
+d2['Feb'] = '2nd'
+print(d2)             # -> {'Jan': '1st', 'Feb': '2nd'}
+```
+
+##### Replacing the value of an existing key
+
+```python
+d3 = {1:'a', 2:'b', 3:'d'}
+d3[3] = 'c'
+print(d3)             # -> {1: 'a', 2: 'b', 3: 'c'}
+```
+
+##### dict.update(key = 'value') 
+
+값을 제공하는 key, value로 덮어씁니다.
+
+```python
+my_dict = {'apple': '사과', 'banana': '바나나', 'melon': '멜론'}
+my_dict.update(apple='사과아')
+print(my_dict)   # -> {'apple': '사과아', 'banana': '바나나', 'melon': '멜론'}
+```
+
+
+
+.
+
+## Dictionary - Deleting Items
+
+##### del dict['_key_']   : delete single {key: value} item
+
+```python
+d4 = {11:'a', 22:'b', 33:'A'}
+del d4[33]
+print(d4)             # -> {11: 'a', 22: 'b'}
+```
+
+##### dict.clear()   : empty entire dictionary
+
+```python
+d4.clear()
+print(d4)             # -> {}
+```
+
+##### dict.pop(_key_[, _default_])
+
+key가 딕셔너리에 있으면 제거하고 그 값을 돌려줍니다. 그렇지 않으면 default를 반환합니다. default가 없는 상태에서 딕셔너리에 없으면 KeyError가 발생합니다.
+
+
+
+.
 
 .
 
@@ -797,5 +777,108 @@ print(s2)       # -> {1, 2, 3, 4, 5, 6, 7, 8, 9}
 s2.discard(0)   # -> nothing happens
 ```
 
+.
 
+.
+
+# 복사: Shallow Copy vs Deep Copy
+
+#### Q. Is the object mutable or immutable?
+
+##### Immutable Objects: String, Int, Tuple
+
+- CAN create a separate copy/clone. Altering the copy will NOT affect the original.
+
+- ```python
+  original = 13
+  copy = original
+  
+  copy = 12
+  
+  print(original)  # -> 13     # not affected
+  print(copy)      # -> 12
+  
+  # Comparing the id of 'original' and 'copy':
+  print(id(original), id(copy))    # -> 1837091136 1837091120 (different)
+  print(original is copy)          # -> False
+  ```
+
+##### Mutable Objects: List, Dictionary
+
+- Can NOT create a separate copy/clone (All assigned variables point to the same object)
+
+- Attempts to alter the "copy" will also alter the original object.
+
+- ```python
+  original = [1, 2, 3]
+  copy = original
+  
+  copy[0] = 100    # attempt to alter the "copied" list
+  
+  print(original)  # -> [100, 2, 3]    # original is altered
+  print(copy)      # -> [100, 2, 3]
+  
+  # Comparing the id of 'original' and 'copy':
+  print(id(original), id(copy))    # -> 5705040 5705040
+  print(original is copy)          # -> True
+  ```
+
+  - Hence `original` and `copy` point to the exact same object (list).
+  - `copy` is a misnomer, as this is not an actual separate copy of `original`. 
+  - Think) `copy = original = [1, 2, 3]` 
+    - => `copy` equals whatever `original` is, and `original` equals `[1, 2, 3]`
+
+##### Shallow Copy: Creating copies of non-compound mutable objects
+
+Three ways to create "shallow" copies, which are separate and independent from the original, but only for non-compound mutable objects:
+
+- `new = old[:]`
+- `new = list(old)`
+  - not recommended, as `list()` is also used for type casting
+- `new = copy.copy(old)` (need to `import copy`)
+
+Shallow copied mutable objects will have a different memory address from that of the original (different `id`).
+
+**However**, shallow copy cannot create a completely separate copy of compound objects:
+
+```python
+>>> old = [1, 2, 3, [11, 22, 33, [111, 222]]]      # 3-level compound list
+>>> new = old[:]        # shallow copy 'new' is created via slicing
+
+>>> print(id(old), id(new))
+4477211720 4479057352       # different id, separate objects
+
+>>> new[1] = 'Lv 1'            # modify Level 1 element (non-compound)
+>>> new[3][2] = 'Lv 2'         # modify Level 2 element (compound)
+>>> new[3][3][0] = 'Lv 3'      # modify Level 3 element (compound)
+
+>>> print(old)
+[1, 2, 3, [11, 22, 'Lv 2', ['Lv 3', 222]]]  # Levels 2, 3 are affected
+
+>>> print(new)
+[1, 'Lv 1', 3, [11, 22, 'Lv 2', ['Lv 3', 222]]]
+```
+
+- "A *shallow copy* constructs a new compound object and then (to the extent possible) inserts *references* into it to the objects found in the original."
+
+##### Deep Copy: Creating copies of even compound mutable objects
+
+```python
+>>> import copy
+
+>>> old = [1, 2, 3, [11, 22, 33, [111, 222]]]
+>>> new = copy.deepcopy(old)
+
+>>> new[1] = 'Lv 1'
+>>> new[3][2] = 'Lv 2'
+>>> new[3][3][0] = 'Lv 3'
+
+>>> print(old)
+[1, 2, 3, [11, 22, 33, [111, 222]]]           # completely unaffected
+
+>>> print(new)
+[1, 'Lv 1', 3, [11, 22, 'Lv 2', ['Lv 3', 222]]]
+```
+
+- "A _deep_ copy constructs a new compound object and then, recursively, inserts _copies_ into it of the objects found in the original."
 

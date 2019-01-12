@@ -199,9 +199,9 @@ print(fruit)        # -> ['Banana', 'Coconut', 'Deli']
 - __.join()__: 특정 기호를 문자열의 각 아이템 사이에 삽입
 - __.upper()__: 모든 아이템을 대문자로 변경
 - __.lower()__: 모든 아이템을 소문자로 변경
-- **.capitalize():** capitalizes the first letter of the string (the rest in lower-case)
-- **.title():** capitalizes letters following each apostrophe or whitespace
-- **.swapcase():** 
+- **.capitalize():** capitalizes only the first letter of the string (the rest in lower-case)
+- **.title():** capitalizes letters following every apostrophe or whitespace
+- **.swapcase():** changes uppercase into lowercase and vice versa
 - __.lstrip()__: 왼쪽으로 공백 (또는 지정 문자) 제거
 - __.rstrip()__: 오른쪽으로 공백 (또는 지정 문자) 제거
 - __.strip()__: 앞뒤로 공백 (또는 지정 문자) 제거
@@ -346,7 +346,7 @@ A-B-C-D-E
 
 `.isupper()`: returns true if all letters of the string (thus excluding whitespace and other punctuations) are uppercase
 
-- similar for `.islower()` and `.istitle()`
+- likewise for `.islower()` and `.istitle()`
 
 
 

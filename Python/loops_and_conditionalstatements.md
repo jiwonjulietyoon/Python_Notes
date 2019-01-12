@@ -41,6 +41,15 @@ Pass means do nothing
 
 .
 
+##### when Indexing Variable is not used within the loop, use `_`
+
+```python
+for _ in range(10):       # (X) for i in range(10):
+    print("Hi")
+```
+
+.
+
 ## short-hand version
 
 => _valueWhenTrue_ if _condition_ else _valueWhenFalse_

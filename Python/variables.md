@@ -22,7 +22,8 @@
 - String: `string = "Variable"`   (wrap with single or double quotes)
 - Number: `num = 10`
 - Declare multiple variables at once: `a, b, c = 10, 20, 'thirty'`
-    - here, the number of objects given on both sides must be the same
+    - Here, the number of objects given on both sides must be the same
+    - Values may be provided in either a tuple or list format. The above example can also be written as : `a, b, c = [10, 20, 'thirty']`
 - Assign same values to multiple variables: `x = y = z = 10`
     - in this case, id(x), id(y), and id(z) will be identical
 - Swapping variable values: `a, b = b, a`

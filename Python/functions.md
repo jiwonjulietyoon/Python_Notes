@@ -202,15 +202,51 @@ lambda_ex = lambda a: a**2
 lambda_ex(4)                # -> 16
 ```
 
-## map(사용할함수, 대상리스트)
+## map(적용할함수, 대상iterable)
 
-- 리스트의 각 아이템에 함수를 적용한 후, map 객체로 반환
-- 최종적으로 사용한 타입으로 형변환할 필요가 있다
+- Iterable의 모든 요소에 함수를 적용한 후, map 객체로 반환한다.
+- 반환값은 map_object이므로, 최종적으로 사용할 타입으로 형변환해야 한다.
+
+```python
+# Task: 아래의 리스트를 문자열 '123'으로 만들기
+a = [1, 2, 3]
+
+# Step 1: a의 각 요소를 str 타입으로 형변환하기 (can't join int elements)
+a_str = list(map(str, a))
+a_str = [str(x) for x in a]  # list comprehension
+
+# Step 2: join
+''.join(a_str)
+```
+
+사용자 정의 함수도 map으로 적용할 수 있다:
+
+```python
+def cube(n):
+    return n**3
+
+a = [1, 2, 3]
+list(map(cube, a))    # -> [1, 8, 27]
+
+------------
+# Note) Using Lambda:
+list(map(lambda x: x**3, a))
+```
+
+Map은 Lambda와 함께 사용될 때가 많다.
 
 ```python
 result = map(lambda a: a**2, [3,4,5])
 print(list(result))                    # -> [9, 16, 25]
 ```
+
+.
+
+## zip(*iterables)
+
+복수의 iterable object 들의 요소들을 튜플로 짝지어서 zip object로 반환한다.
+
+
 
 .
 
