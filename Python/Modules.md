@@ -10,6 +10,7 @@
   - not recommended due to inefficiency (사용하지 않은 어트리뷰트도 다 메모리 상에 올려놓기에)
 
 -  **dir(_module_)** : check all attributes offered by the _module_
+- List of Python Modules: https://docs.python.org/3/library/index.html
 
 ### Overview of How Modules Work
 
