@@ -244,7 +244,76 @@ print(list(result))                    # -> [9, 16, 25]
 
 ## zip(*iterables)
 
-복수의 iterable object 들의 요소들을 튜플로 짝지어서 zip object로 반환한다.
+##### 복수의 iterable object 들의 요소들을 튜플로 짝지어서 zip object로 반환한다.
+
+```python
+num = [1, 2, 3]
+alpha = ['A', 'B', 'C']
+asc = [65, 66, 67]
+
+list(zip(num, alpha, asc))  # -> [(1, 'A', 65), (2, 'B', 66), (3, 'C', 67)]
+```
+
+##### Dictionary - comprehension method에서 zip() 활용하기
+
+```python
+{x: y for x in num for y in alpha}  
+# -> {1: 'C', 2: 'C', 3: 'C'}
+# 이중 for loop -> key는 중복될 수 없으므로, 마지막으로 할당된 value로 덮어씌워진다.
+
+{x: y for x, y in zip(num, alpha)}
+# -> {1: 'A', 2: 'B', 3: 'C'}     desired result!
+```
+
+##### For loop와 함께 활용했을 때는 enumerate와 비슷한 효과를 낼 수 있다
+
+```python
+a = '123'
+b = '567'
+
+for digit_a, digit_b in zip(a, b):
+    print(digit_a, digit_b)
+
+#-------- Result: ----------
+1 5
+2 6
+3 7
+```
+
+##### 사용되는 iterable object들의 길이가 다를 경우, 가장 짧은 것을 기준으로 구성된다.
+
+```python
+num1 = [1, 2, 3]
+num2 = ['1', '2']
+list(zip(num1, num2))     # -> [(1, '1'), (2, '2')]
+```
+
+Note) 가장 긴 것을 기준으로 구성하려면:
+
+```python
+from itertools import zip_longest
+list(zip_longest(num1, num2, fillvalue=0))  # -> [(1, '1'), (2, '2'), (3, 0)]
+```
+
+.
+
+## filter(기준function, iterable)
+
+Iterable의 요소 중 function의 반환 결과가 True인 것들만 모아서 반환한다.
+
+```python
+def even(n):
+    return not n%2
+
+a = [1, 2, 3, 4]
+list(filter(even, a))  # -> [2, 4]
+
+# returns the same results as the following list comprehension methods:
+[x for x in [1, 2, 3, 4] if even(x)]
+[x for x in [1, 2, 3, 4] if not x%2]
+```
+
+
 
 
 

@@ -4,16 +4,6 @@
 
 
 
-## - Opening a webbrowser
-
-```python
-import webbrowser
-webbrowser.open('some_url.com')
-# c.f webbrowser.open_new(), webbrowser.open_new_tab()
-```
-
-
-
 ## - Random Sampling
 
 ```python
@@ -118,12 +108,6 @@ list_a = ['A', 'B',
 >>> print(f"Today is {today:%y}.{today:%m}.{today:%d}. / {today:%A}, {today:%b} {today:%d}, {today:%Y}")
 Today is 19.01.02. / Wednesday, Jan 02, 2019
 ```
-
-.
-
-## dir(_object_)
-
-Lists all methods that can be used on the _object_
 
 .
 

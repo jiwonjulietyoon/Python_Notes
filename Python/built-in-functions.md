@@ -175,9 +175,13 @@ fruit = [value for (index, value) in enumerate(colors) if index not in (0, 4, 5)
 print(fruit)        # -> ['Banana', 'Coconut', 'Deli']
 ```
 
+.
 
+## dir([_object_])
 
+Lists all valid methods/attributes that can be used on the _object_.
 
+When no argument is provided, returns the list of names in the current local scope.
 
 
 

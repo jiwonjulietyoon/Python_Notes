@@ -694,6 +694,26 @@ print(set(a_list))     # ->  {1, 2, 3}
 
 .
 
+## Set - Adding/Removing elements
+
+**`set.add(value)`** : one argument only
+
+**`set.update(*iterables)`** : takes multiple arguments, all of which must be iterable
+
+- (X) `set.update{1, 2, 3}` : arguments are not iterables
+- (O) `set.update('a', 'b', 'c')` , `set.update('abc')`
+- (O) `set.update({5, 5, 5, 2}, {7, 9})` : 2, 5, 7, 9 will be newly added (excl. redundants)
+
+**`set.remove(value)`** : one argument only; KeyError raised when _value_ is not in set
+
+**`set.discard(value)`** : one argument only; no errors raised when _value_ is not in set
+
+**`set.pop()`** : returns and removes an arbitrary element
+
+
+
+.
+
 ## SET 집합 연산 : 차집합(-), 교집합(&), 합집합(|)
 
 ##### 차집합, '`-`', `s1.difference(s2)` => elements unique to `s1`
