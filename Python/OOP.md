@@ -58,6 +58,7 @@ del Instance1
 - `def __repr__`: 
   - 인스턴스 자체를 출력할 때 이 부분의 반환값이 출력된다.
   - `__repr__`이 정의되지 않았을 경우, 인스턴스 자체를 출력 시도하면 해당 인스턴스의 storage address가 출력된다.
+    - e.g) `<__main__.Class1 object at 0x0598B870>`
 - `def method1`:
   - 인스턴스에 적용되는 메소드를 호출하고자 할 때는:
     1. `Instance1.method1()`
@@ -75,7 +76,7 @@ globe = "Global Variable"
 class Person:
     population = 0
     def __init__(self, Name, age, gender='F'):
-        self.name = Name
+        self.name = Name  # typically: self.name = name
         self.age = age
         self.gender = gender
         self.cash = 0
@@ -84,7 +85,9 @@ class Person:
     def __del__(self):
         print(f"Instance {self.name} has been deleted.")
     def __repr__(self):
-        return f"Instance {self.name} of Person Class"
+        return f"[repr]Instance {self.name} of Person Class"
+    def __str__(self):
+        return f"[str]Instance {self.name} of Person Class"
     def introduce(self):
         print(f"Hi, I am {self.name}. I'm {self.age} yrs old and my gender is {self.gender}.")
     def add_cash(self, money):
@@ -101,106 +104,151 @@ class Person:
         print(f"Current Population (class method): {cls.population}")
 ```
 
-.
+##### Create Instances `jiwon`, `juliet`, and `john`
 
 ```python
-jiwon = Person('Jiwon', 26)
-juliet = Person('Juliet', 25)
-john = Person('John', 30, 'M')
-
-# Result: 
+>>> jiwon = Person('Jiwon', 26)
 Instance Jiwon has been created.
+
+>>> juliet = Person('Juliet', 25)
 Instance Juliet has been created.
+
+>>> john = Person('John', 30, 'M')
 Instance John has been created.
 ```
 
-.
+##### Check Available Instance Methods and Membership
 
 ```python
-print(dir(jiwon))
-print(isinstance(jiwon, Person))
-
-# Result:
+>>> print(dir(jiwon))
 ['__class__', '__del__', '__delattr__', '__dict__', '__dir__', '__doc__', '__eq__', '__format__', '__ge__', '__getattribute__', '__gt__', '__hash__', '__init__', '__init_subclass__', '__le__', '__lt__', '__module__', '__ne__', '__new__', '__reduce__', '__reduce_ex__', '__repr__', '__setattr__', '__sizeof__', '__str__', '__subclasshook__', '__weakref__', 'add_cash', 'age', 'cash', 'gender', 'info', 'introduce', 'name', 'population', 'print_cash', 'print_pop', 'print_population']
+
+>>> print(isinstance(jiwon, Person))     # isinstance('instance', 'class')
 True
 ```
 
-.
+##### Print Instances (`__repr__` and `__str__`)
 
 ```python
-john.introduce()
-Person.introduce(john)   # Person.introduce()  # error
+>>> print(jiwon)
+[str]Instance Jiwon of Person Class
+```
 
-# Result:
+- `__repr__` or `__str__` is returned when an instance is printed (whichever one happens to be defined)
+- When both `__repr__` and `__str__` are defined, `__str__` overrides
+- When neither `__repr__` nor `__str__` is defined, the storage/memory address of the instance is returned
+  - e.g) `<__main__.Person object at 0x0598B870>`
+
+##### Instance Methods
+
+```python
+>>> john.introduce()
 Hi, I am John. I'm 30 yrs old and my gender is M.
+
+>>> Person.introduce(john)
 Hi, I am John. I'm 30 yrs old and my gender is M.
 ```
 
-.
+- `Person.introduce()` raises a TypeError: 
+  - `introduce() missing 1 required positional argument: 'self'`,
+  - where `self` must be an instance of `Person`, e.g) `john`
+
+##### Class Variables (`population`, in this case)
 
 ```python
-print(Person.population)
-print(jiwon.population)
-jiwon.print_population()
+>>> print(Person.population)
+3
 
-# Result:
+>>> print(jiwon.population)
 3
-3
+
+>>> jiwon.print_population()
 Current Population: 3
 ```
 
-.
+- **Class variables**: data shared by all instances
+  - defined outside `__init__`
+  - can be accessed by both instances and the class itself
+    - e.g) `Person.population`, `jiwon.population`
+    - instances have access to all parent class variables
+  - when called within the `__init__` method, use `Person.population`
+- c.f) **Instance Variables**: data specific to each individual instance
+  - can be accessed via `instancename.instancevar`
+
+##### Static Method and Class Method
 
 ```python
-juliet.print_pop()
-Person.print_pop()
-juliet.info()
-Person.info()
+>>> juliet.print_pop()
+Current Population (class method): 3
 
-# Result:
+>>> Person.print_pop()
 Current Population (class method): 3
-Current Population (class method): 3
+
+>>> juliet.info()
 Human
+
+>>> Person.info()
 Human
 ```
 
-.
+- **Class Method** : can only access class variables
+  - Use `@classmethod` as the decorator
+  - Typically uses `cls` (short for 'class') as the parameter
+- **Static Method**: cannot access any variables (neither class or instance)
+  - Use `@staticmethod` as the decorator
+  - No parameter needed upon definition
+- both Class and Static Methods can be called by all instances as well as the class itself.
+
+##### Instance methods that accept additional variables
 
 ```python
-juliet.add_cash(3000)
-juliet.print_cash()
+>>> juliet.add_cash(3000)
 
-# Result:
+>>> juliet.print_cash()
 Juliet's cash: 3000
 ```
 
-.
+##### Variable Scope: Class, Instance, and Global
 
 ```python
-print(jiwon.population)
-print(juliet.cash)
-# print(juliet.globe)   #AttributeError: 'Person' object has no attribute 'globe'
-
-# Result :
+>>> print(jiwon.population)
 3
+
+>>> print(juliet.cash)
 3000
+
+>>> print(juliet.globe)    
+#AttributeError: 'Person' object has no attribute 'globe'
 ```
 
-.
+- instances can access both class and instance variables, but cannot directly access any global variables defined outside the class
+
+##### Delete Instances
 
 ```python
-del jiwon
-juliet = Person('Juliet', 25)
-
-# Result:
+>>> del jiwon
 Instance Jiwon has been deleted.
+
+>>> juliet = Person('Juliet', 25)
 Instance Juliet has been created.
 Instance Juliet has been deleted.
 ```
 
+- When indirectly deleting an instance by creating a new instance with the same name, the new instance is created right before the older one is deleted (thus resulting in the order of the messages printed in the above example)
 
 
 
+.
 
+.
 
+.
+
+## unfinished - oop2.ipynb
+
+- 연산자 오버라이딩 (중복 정의)
+- 상속
+- super()
+- method overriding
+- multiple inheritance
 
