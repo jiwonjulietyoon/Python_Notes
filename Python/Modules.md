@@ -62,7 +62,22 @@ print(TWO(10))                   # TWO 제외한 Add 모듈의 다른 함수는 
 
 ## math
 
+Note) `math` 모듈 없이 사용할 수 있는 기본 함수: `sum`, `max`, `min`, `abs`, `pow`, `round`, `divmod`
 
+##### 상수
+
+- `math.pi`, `math.e`
+
+##### Operators
+
+- `math.ceil(x)` : round up (smallest integer greater than x)
+- `math.floor(x)`: round down (greatest integer less than x)
+- `math.trunc(x)`: return the integer part of x (소수점 이하 자리수 버림)
+  - `round(-3.3)` == `-3`
+  - `math.floor(-3.3)` == `-4`
+  - `math.trunc(-3.3)` == `-3`
+- `math.factorial(x)` : return x!
+- `math.fmod(x, y)`
 
 
 
@@ -73,6 +88,21 @@ print(TWO(10))                   # TWO 제외한 Add 모듈의 다른 함수는 
 .
 
 
+
+## datetime
+
+```python
+>>> import datetime
+>>> today = datetime.datetime.now()
+>>> print(today)
+2019-01-02 12:38:23.704796
+>>> print(f"Today is {today:%y}.{today:%m}.{today:%d}. / {today:%A}, {today:%b} {today:%d}, {today:%Y}")
+Today is 19.01.02. / Wednesday, Jan 02, 2019
+```
+
+
+
+.
 
 ## webbrowser
 
@@ -83,6 +113,88 @@ import webbrowser
 webbrowser.open('some_url.com')
 # c.f webbrowser.open_new(), webbrowser.open_new_tab()
 ```
+
+.
+
+## random
+
+Random Sampling
+
+```python
+import random
+
+random.sample(target_list, 5)   # randomly select multiple items
+random.choice(target_list)      # randomly select one item
+```
+
+.
+
+## os
+
+Rename multiple files
+
+```python
+import os
+
+print(os.listdir('.'))   #ls
+os.chdir(r'C:\Users\student\chatbot\day1\list')   #cd
+print(os.getcwd())   #pwd
+# print(os.listdir('.'))   #ls
+
+##### prepend "SSAFY_" 
+for x in os.listdir('.'):
+    os.rename(x, 'SSAFY_'+x)
+
+##### get rid of the prepended "SSAFY_"    
+for x in os.listdir('.'):
+    os.rename(x, x[6:])
+```
+
+Environment Variables
+
+```python
+import os
+Var = os.getenv('ENV_VAR')
+```
+
+.
+
+## pprint
+
+pretty print (more legible JSON data)
+
+```python
+from pprint import pprint as pp
+url = f"https://api.telegram.org/{token}/getUpdates"
+response = requests.get(url)
+doc = response.json()
+pp(doc)    # -> will print 'doc' in a relatively more legible JSON format
+```
+
+.
+
+## faker
+
+```python
+from faker import Faker
+fake = Faker()
+
+print(fake.name())
+print(fake.job())
+print(fake.address())
+```
+
+.
+
+
+
+
+
+
+
+
+
+
 
 
 
