@@ -47,7 +47,7 @@ del Instance1
   - `__init__` 처럼 양쪽에 `__`가 있는 메서드를 special method 혹은 magic method라고 부른다.
   - Variable Scope:
     - global variable: variables defined outside the class
-    - class variable: variables defined inside the class; commonly shared by all instances
+    - class variable: variables defined inside the class and outside of `__init__`; shared by all instances
     - instance variable: variables specific to each instance only. (other instances don't have access)
 - `def __init__`:
   - 인스턴스 생성할 때마다 자동으로 실행되는 함수
