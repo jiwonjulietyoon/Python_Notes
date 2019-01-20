@@ -46,7 +46,9 @@ del Instance1
   - 클래스 내에 정의되는 모든 메소드는 첫 번째 인자로 `self`를 전달한다. (꼭 "self" 가 아니어도 되고 다른 표현을 쓸 수는 있으나, 관습적으로 "self"를 쓴다.)
   - `__init__` 처럼 양쪽에 `__`가 있는 메서드를 special method 혹은 magic method라고 부른다.
   - Variable Scope:
-    - global variable: 
+    - global variable: variables defined outside the class
+    - class variable: variables defined inside the class; commonly shared by all instances
+    - instance variable: variables specific to each instance only. (other instances don't have access)
 - `def __init__`:
   - 인스턴스 생성할 때마다 자동으로 실행되는 함수
     - `self` 이외의 다른 `parameter`가 인자로 전달될 경우, 인스턴스를 생성할 때도 해당 인자들을 반드시 전달해야 한다.

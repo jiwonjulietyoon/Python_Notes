@@ -52,7 +52,7 @@ for _ in range(10):       # (X) for i in range(10):
 
 ## short-hand version
 
-=> _valueWhenTrue_ if _condition_ else _valueWhenFalse_
+=> _valueWhenTrue_ `if` _condition_ `else` _valueWhenFalse_
 
 타 언어의 삼항 연산자와 동일하다
 

@@ -197,7 +197,7 @@ When no argument is provided, returns the list of names in the current local sco
 
 (The following methods do __NOT__ modify the original string)
 
-- __.len()__: 문자열 길이 반환
+- __len()__: 문자열 길이 반환
 - __.count()__: 문자열에 있는 특정 문자의 개수를 반환
 - __.find(), .index():__ 특정 문자의 인덱스 번호 반환
 - __.join()__: 특정 기호를 문자열의 각 아이템 사이에 삽입

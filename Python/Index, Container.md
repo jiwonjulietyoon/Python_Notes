@@ -710,8 +710,6 @@ print(set(a_list))     # ->  {1, 2, 3}
 
 **`set.pop()`** : returns and removes an arbitrary element
 
-
-
 .
 
 ## SET 집합 연산 : 차집합(-), 교집합(&), 합집합(|)
