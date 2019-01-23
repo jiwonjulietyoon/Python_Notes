@@ -175,7 +175,16 @@ Current Population: 3
     - instances have access to all parent class variables
   - when called within the `__init__` method, use `Person.population`
 - c.f) **Instance Variables**: data specific to each individual instance
+
   - can be accessed via `instancename.instancevar`
+
+  - Instance variables don't necessarily have to be defined within the class definition. New instance variables may be created anytime. In the above example, running the following code _after_ running the above class definition will add the 'nationality' variable to instance 'jiwon'. (Likewise for instance methods.)
+
+    ```python
+    jiwon.nationality = "Korean"
+    print(jiwon.nationality)      # -> Korean
+    ```
+
 
 ##### Static Method and Class Method
 
@@ -251,6 +260,6 @@ Instance Juliet has been deleted.
 - 연산자 오버라이딩 (중복 정의)
 - 상속
 - super()
-- method overriding
+- operator overloading (function overloading)
 - multiple inheritance
 

@@ -131,6 +131,41 @@ print('Out of stock')
 
 # for loop
 
+##### for loops and scope
+
+- `for` loops (along with `if` statements) do NOT create a separate scope.
+
+- The iterating variable used in the for loops may be used elsewhere
+
+  ```python
+  for i in [1, 2, 3]:
+      print(i)          # at the end of this loop, i == 3
+  print(i)
+  
+  ## Result:
+  # 1
+  # 2
+  # 3
+  # 3
+  ```
+
+  ```python
+  for i in [1, 2, 3]:
+      print("hi")       # at the end of this loop, i == 3
+  
+  def func1():
+      print(i)          # this function can also access "i"
+  
+  func1()
+  
+  ## Result:
+  # hi
+  # hi
+  # hi
+  # 3
+  ```
+
+
 ##### for loops and dictionaries
 
 for `dict1 = {'A': 65, 'B': 66, 'C': 67}`   :
