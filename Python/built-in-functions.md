@@ -1,5 +1,46 @@
 # Python Built-in Functions
 
+## Full List
+
+https://docs.python.org/3/library/functions.html
+
+- abs(), divmod(), max(), min(), pow(), round(), sum()
+- print()
+- all()
+- any()
+- ascii(), chr(), ord()
+- bin(), hex(), oct()
+- input()
+- bool(), complex(), eval(), float(), int(), str()
+- dict(), enumerate(), frozenset(), hash(), list(), range(), set(), tuple()
+- map()
+- filter()
+- zip()
+- reversed(), sorted()
+- breakpoint()
+- bytearray(), bytes()
+- callable()
+- classmethod(), staticmethod()
+- compile()
+- delattr(), getattr(), hasattr(), setattr()
+- dir(), help(), id(), type(), isinstance(), issubclass()
+- exec()
+- format()
+- globals(), locals()
+- iter()
+- len()
+- memoryview()
+- next()
+- object()
+- open()
+- property()
+- repr()
+- slice()
+- super()
+- vars()
+
+
+
 ## print()
 
 ##### str vs int
