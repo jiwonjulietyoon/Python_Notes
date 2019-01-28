@@ -1,34 +1,27 @@
 # Python Built-in Functions
 
-## Full List
+## Full List of Built-in Functions
 
 https://docs.python.org/3/library/functions.html
 
-- abs(), divmod(), max(), min(), pow(), round(), sum()
-- print()
+- __Input/Output__: print(), input()
+- __Math__: abs(), divmod(), max(), min(), pow(), round(), sum()
+- __Typecasting/Containers__: bool(), complex(), eval(), float(), int(), str(), dict(), frozenset(), hash(), list(), range(), set(), tuple()
+- __Sorting/Pairing__: enumerate(), map(), filter(), zip(), reversed(), sorted()
+- __Info__: len(), dir(), help(), id(), type(), isinstance(), issubclass()
+- __Char/Num Expression__: ascii(), chr(), ord(), bin(), hex(), oct()
 - all()
 - any()
-- ascii(), chr(), ord()
-- bin(), hex(), oct()
-- input()
-- bool(), complex(), eval(), float(), int(), str()
-- dict(), enumerate(), frozenset(), hash(), list(), range(), set(), tuple()
-- map()
-- filter()
-- zip()
-- reversed(), sorted()
 - breakpoint()
 - bytearray(), bytes()
 - callable()
 - classmethod(), staticmethod()
 - compile()
 - delattr(), getattr(), hasattr(), setattr()
-- dir(), help(), id(), type(), isinstance(), issubclass()
 - exec()
 - format()
 - globals(), locals()
 - iter()
-- len()
 - memoryview()
 - next()
 - object()
@@ -48,8 +41,6 @@ https://docs.python.org/3/library/functions.html
 `print('string')`, `print('3')` => str
 
 `print(3)`, `print(3+2)` => int
-
-.
 
 ##### Multiple entries/objects
 
@@ -71,8 +62,6 @@ F-string interpolation - {} - also works here.""")
 
 +) Multiple print functions in a single line are joined with a semicolon: `print('Line 1'); print('Line 2')`
 
-.
-
 ##### Escape Sequence : \
 
 ```python
@@ -82,8 +71,6 @@ print('Line\nBreak')
 print('Tab\tTab\tTab')
 print('Percent: %d%%' % 100)
 ```
-
-.
 
 ##### print(*objects, sep=' ', end='\n')
 
@@ -95,18 +82,6 @@ The following code will result in "Life.is.short!You,need,Python":
 print('Life', 'is', 'short', sep='.', end='!')
 print('You', 'need', 'Python', sep=',')
 ```
-
-.
-
-## help(_[object]_)
-
-prints help page of _object_
-
-.
-
-## type(_object_)
-
-returns the type of _object_
 
 .
 
@@ -122,50 +97,149 @@ print('Input is: ', my_input)
 
 .
 
-## int()
-- 숫자형 자료형을 integer type으로 형변환한다 (e.g float => integer)
-- float => integer 의 과정에서, 소수점 이하의 정보는 반올림 없이 유실된다.
-    - `print(int(1.8), type(int(1.8)))` => `1 <class 'int'>`  (1.8 => 1)
-- 문자열은 integer type으로 형변환할 수 없다.
-    - `print(int('abc'))` => this will raise a 'ValueError'
+.
+
+## abs(number)
+
+Return absolute value of number (int, float, or complex).
+
+For complex numbers, return the magnitude. 
+
+- e.g) `abs(3 + 4j) == 5.0`
 
 .
 
-## float()
-- 숫자형 자료형을 float type으로 형변환한다 (e.g integer => float)
-    - `print(float(3))` => `3.0`
-- int()와 마찬가지로, 문자열은 float()을 사용할 수 없다 (ValueError 발생)
+## divmod(dividend, divisor)
+
+Return a tuple of (quotient, remainder)
+
+- Both quotient/remainder are integers if the given dividend/divisor are both integers
+- Else, both quotient/remainder are float (remainder is not precise)
 
 .
 
-## str()
-- 어떤 자료형이든 다 string type으로 형변환한다
-    - `print(str(12345), type(str(12345)))`  => `12345 <class 'str'>`
+## max(iterable[, key, default])
 
-.
+**[Most Cases]** Without _key_ and _default_, return the maximum value among the given group of iterables. If there are multiple maximum items, return the first one encountered.
 
-## eval()
-- 자료형을 함수가 스스로 판단해서 자동으로 맞춰준다.
+**[Setting _Default_]** Specifies which value should be returned when the given iterable is empty. When the given iterable is empty AND no _default_ is provided, a ValueError is raised.
 
-    - `print(type(eval('1234')))`  =>  `<class 'int'>`
-- input()와 함께 사용될 때가 많다.
-    - eval() 사용하지 않을 때, input()로 입력 받은 데이터는 디폴트로 string type이 된다.
-    - eval() 사용할 때:
+- `max([], default="empty iterable")` ==> `empty iterable`
+
+**[Setting _Key_]** Key function where each iterable item is passed through, and comparison is performed based on the return values
+
     ```python
-    >>> input = eval(input("Enter a number: "))
-    Enter a number: 1111
-    >>> print('input:', input, type(input))
-    1111 <class 'int'>
+# Example 1 : Find the maximum according to the sum of all digits
+def addDigits(num):
+    Sum = 0
+    while(num):
+        Sum += num % 10
+        num = num // 10
+    return Sum
+
+sample = [111, 9, 23, 55]
+
+max(sample, key=addDigits)  # -> 55
     ```
+
+```python
+# Example 2: Find the maximum according to the dictionary values
+sample = {'a': 10, 'b': 20, 'c': 15}
+
+max(sample.items(), key=lambda x: x[1])        # -> ('b', 20)
+max(sample.items(), key=lambda x: x[1])[1]     # -> 20
+```
+
+.
+
+## pow(base, power[, modulo])
+
+`pow(x, y)` is essentially the same as `x**y`.
+
+- If `x` and/or `y` is a float, or if `y` is a negative integer, the return value will be a float.
+
+`pow(x, y, z)` will give same results as `pow(x, y) % z`, except much more efficient.
+
+- e.g) `pow(2, 3, 5) == 3`
 
 .
 
 ## round()
+
 round(_number_[, _precision(integer)_])
 
 - if _precision_ is not given, round to nearest integer
 
 e.g) `round(2.33333, 2)`  => `2.33`
+
+.
+
+## sum(iterable[, additional])
+
+Returns the sum of all values in the _iterable_ and the _additional_ number. Takes at most 2 arguments, INCLUDING _additional_. (_additional_ defaults to 0)
+
+- `sum(3, 4, 5)` will raise a TypeError. `sum((3, 4, 5))` will work.
+
+```python
+sample = [1, 2, 3, 4, 5]
+sum(sample, 100)          # -> 115
+```
+
+.
+
+.
+
+## int()
+
+- 숫자형 자료형을 integer type으로 형변환한다 (e.g float => integer)
+- float => integer 의 과정에서, 소수점 이하의 정보는 반올림 없이 유실된다.
+  - `print(int(1.8), type(int(1.8)))` => `1 <class 'int'>`  (1.8 => 1)
+- 문자열은 integer type으로 형변환할 수 없다.
+  - `print(int('abc'))` => this will raise a 'ValueError'
+
+.
+
+## str()
+
+- 어떤 자료형이든 다 string type으로 형변환한다
+  - `print(str(12345), type(str(12345)))`  => `12345 <class 'str'>`
+
+.
+
+## float()
+
+- 숫자형 자료형을 float type으로 형변환한다 (e.g integer => float)
+  - `print(float(3))` => `3.0`
+- int()와 마찬가지로, 문자열은 float()을 사용할 수 없다 (ValueError 발생)
+
+.
+
+## eval()
+
+- 자료형을 함수가 스스로 판단해서 자동으로 맞춰준다.
+
+  - `print(type(eval('1234')))`  =>  `<class 'int'>`
+
+- input()와 함께 사용될 때가 많다.
+
+  - eval() 사용하지 않을 때, input()로 입력 받은 데이터는 디폴트로 string type이 된다.
+  - eval() 사용할 때:
+
+  ```python
+  >>> input = eval(input("Enter a number: "))
+  Enter a number: 1111
+  >>> print('input:', input, type(input))
+  1111 <class 'int'>
+  ```
+
+.
+
+## bool(x)
+
+Return `True` or `False` based on the value of `x`.
+
+- `0, 0.0, (), [], {}, '', None` will convert to `False`
+- All else will convert to `True`
 
 .
 
@@ -184,6 +258,8 @@ e.g) `round(2.33333, 2)`  => `2.33`
 >>> print(list(range(5, 0, -1)))
 [5, 4, 3, 2, 1]
 ```
+
+.
 
 .
 
@@ -218,6 +294,36 @@ print(fruit)        # -> ['Banana', 'Coconut', 'Deli']
 
 .
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## help(_[object]_)
+
+prints help page of _object_
+
+.
+
+## type(_object_)
+
+returns the type of _object_
+
+.
+
+
+
 ## dir([_object_])
 
 Lists all valid methods/attributes that can be used on the _object_.
@@ -236,7 +342,7 @@ When no argument is provided, returns the list of names in the current local sco
 
 # 문자열 내장 함수
 
-(The following methods do __NOT__ modify the original string)
+(The following methods do __NOT__ modify the original string; strings are immutable)
 
 - __len()__: 문자열 길이 반환
 - __.count()__: 문자열에 있는 특정 문자의 개수를 반환
@@ -376,7 +482,7 @@ The argument itself need not be _str_. Could also be a _list_ consisting of stri
 A-B-C-D-E
 ```
 
-
+.
 
 ## 확인 메소드
 
