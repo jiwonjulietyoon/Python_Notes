@@ -128,8 +128,9 @@ Return a tuple of (quotient, remainder)
 
 **[Setting _Key_]** Key function where each iterable item is passed through, and comparison is performed based on the return values
 
-    ```python
+```python
 # Example 1 : Find the maximum according to the sum of all digits
+
 def addDigits(num):
     Sum = 0
     while(num):
@@ -140,10 +141,11 @@ def addDigits(num):
 sample = [111, 9, 23, 55]
 
 max(sample, key=addDigits)  # -> 55
-    ```
+```
 
 ```python
 # Example 2: Find the maximum according to the dictionary values
+
 sample = {'a': 10, 'b': 20, 'c': 15}
 
 max(sample.items(), key=lambda x: x[1])        # -> ('b', 20)
@@ -294,9 +296,155 @@ print(fruit)        # -> ['Banana', 'Coconut', 'Deli']
 
 .
 
+## map(적용할함수, 대상iterable)
 
+- Iterable의 모든 요소에 함수를 적용한 후, map 객체로 반환한다.
+- 반환값은 map_object이므로, 최종적으로 사용할 타입으로 형변환해야 한다.
 
+```python
+# Task: 아래의 리스트를 문자열 '123'으로 만들기
+a = [1, 2, 3]
 
+# Step 1: a의 각 요소를 str 타입으로 형변환하기 (can't join int elements)
+a_str = list(map(str, a))
+a_str = [str(x) for x in a]  # list comprehension
+
+# Step 2: join
+''.join(a_str)
+```
+
+사용자 정의 함수도 map으로 적용할 수 있다:
+
+```python
+def cube(n):
+    return n**3
+
+a = [1, 2, 3]
+list(map(cube, a))    # -> [1, 8, 27]
+
+------------
+# Note) Using Lambda:
+list(map(lambda x: x**3, a))
+```
+
+Map은 Lambda와 함께 사용될 때가 많다.
+
+```python
+result = map(lambda a: a**2, [3,4,5])
+print(list(result))                    # -> [9, 16, 25]
+```
+
+.
+
+## zip(*iterables)
+
+##### 복수의 iterable object 들의 요소들을 튜플로 짝지어서 zip object로 반환한다.
+
+```python
+num = [1, 2, 3]
+alpha = ['A', 'B', 'C']
+asc = [65, 66, 67]
+
+list(zip(num, alpha, asc))  # -> [(1, 'A', 65), (2, 'B', 66), (3, 'C', 67)]
+```
+
+##### Dictionary - comprehension method에서 zip() 활용하기
+
+```python
+{x: y for x in num for y in alpha}  
+# -> {1: 'C', 2: 'C', 3: 'C'}
+# 이중 for loop -> key는 중복될 수 없으므로, 마지막으로 할당된 value로 덮어씌워진다.
+
+{x: y for x, y in zip(num, alpha)}
+# -> {1: 'A', 2: 'B', 3: 'C'}     desired result!
+```
+
+##### For loop와 함께 활용했을 때는 enumerate와 비슷한 효과를 낼 수 있다
+
+```python
+a = '123'
+b = '567'
+
+for digit_a, digit_b in zip(a, b):
+    print(digit_a, digit_b)
+
+#-------- Result: ----------
+1 5
+2 6
+3 7
+```
+
+##### 사용되는 iterable object들의 길이가 다를 경우, 가장 짧은 것을 기준으로 구성된다.
+
+```python
+num1 = [1, 2, 3]
+num2 = ['1', '2']
+list(zip(num1, num2))     # -> [(1, '1'), (2, '2')]
+```
+
+Note) 가장 긴 것을 기준으로 구성하려면:
+
+```python
+from itertools import zip_longest
+list(zip_longest(num1, num2, fillvalue=0))  # -> [(1, '1'), (2, '2'), (3, 0)]
+```
+
+##### Creating a Transposed 2D List
+
+```python
+>>> arr = [
+>>>     [1, 2, 3, 4, 5],
+>>>     [6, 7, 8, 9, 10],
+>>>     [11, 12, 13, 14, 15],
+>>>     [16, 17, 18, 19, 20],
+>>>     [21, 22, 23, 24, 25]
+>>> ]
+>>> transposed_arr = list(zip(*arr))
+
+>>> transposed_arr
+[(1, 6, 11, 16, 21),
+ (2, 7, 12, 17, 22),
+ (3, 8, 13, 18, 23),
+ (4, 9, 14, 19, 24),
+ (5, 10, 15, 20, 25)]
+```
+
+.
+
+## filter(기준function, iterable)
+
+Iterable의 요소 중 function의 반환 결과가 True인 것들만 모아서 반환한다.
+
+```python
+def even(n):
+    return not n%2
+
+a = [1, 2, 3, 4]
+list(filter(even, a))  # -> [2, 4]
+
+# returns the same results as the following list comprehension methods:
+[x for x in [1, 2, 3, 4] if even(x)]
+[x for x in [1, 2, 3, 4] if not x%2]
+```
+
+.
+
+## sorted(iterable[_, key=None, reverse=True_])
+
+Similar to `max()`.
+
+```python
+def addDigits(num):
+    Sum = 0
+    while(num):
+        Sum += num % 10
+        num //= 10
+    return Sum
+
+sample = [2, 7, 11, 4, 21, 9, 100]
+
+sorted(sample, key=addDigits, reverse=True)
+```
 
 
 
