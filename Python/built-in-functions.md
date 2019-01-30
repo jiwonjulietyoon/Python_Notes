@@ -273,7 +273,15 @@ The _iterable_ object must support iteration, i.e. ordered and indexed. E.g. lis
 
 The count number and object item are paired into tuples.
 
-Example)
+Example 1)
+
+```python
+>>> seasons = ['Spring', 'Summer', 'Fall', 'Winter']
+>>> list(enumerate(seasons, start=1))
+[(1, 'Spring'), (2, 'Summer'), (3, 'Fall'), (4, 'Winter')]
+```
+
+Example 2)
 
 ```python
 >>> list_ex = ['a', 'b', 'c', 'd', 'e']
@@ -286,7 +294,7 @@ Example)
 4 e
 ```
 
-Example 2) Goal : Returning a new list after deleting the 0th, 4th, and 5th items
+Example 3) Goal : Returning a new list after deleting the 0th, 4th, and 5th items
 
 ```python
 colors = ['Apple', 'Banana', 'Coconut', 'Deli', 'Ele', 'Grape']
