@@ -64,7 +64,7 @@ del Instance1
 - `def method1`:
   - 인스턴스에 적용되는 메소드를 호출하고자 할 때는:
     1. `Instance1.method1()`
-    2. `Class1.method1(Instance1)` : 괄호 안의 `Instance1` 을 생략할 경우, 
+    2. `Class1.method1(Instance1)` : 괄호 안의 `Instance1` 을 생략할 경우, TypeError가 발생한다.
 
 .
 
@@ -174,7 +174,10 @@ Current Population: 3
     - e.g) `Person.population`, `jiwon.population`
     - instances have access to all parent class variables
   - when called within the `__init__` method, use `Person.population`
-- c.f) **Instance Variables**: data specific to each individual instance
+
+##### Instance Variables
+
+  - data specific to each individual instance
 
   - can be accessed via `instancename.instancevar`
 
@@ -247,6 +250,133 @@ Instance Juliet has been deleted.
 
 - When indirectly deleting an instance by creating a new instance with the same name, the new instance is created right before the older one is deleted (thus resulting in the order of the messages printed in the above example)
 
+##### Creating an instance whose argument is another instance
+
+```python
+class Point:
+    def __init__(self, x, y):
+        self.x = x
+        self.y = y
+
+P1 = Point(1, 2)
+
+print(P1)                         # -> <__main__.Point object at 0x056EEA90>
+print(P1.x, P1.y)                 # -> 1 2
+```
+
+- Neither `def __repr__` nor `def __str__` is defined for `class Point` => thus the plain memory address is printed when attempting to print `instance P1` itself
+- `P1.x`, `P1.y` => accessing instance variables `x`, `y` of `instance P1`
+
+
+```python
+class Circle:
+    def __init__(self, center, r):
+        self.center = center
+        self.r = r
+
+C1 = Circle(P1, 4)
+
+print(C1)                         # -> <__main__.Circle object at 0x0593D050>
+print(C1.center)                  # -> <__main__.Point object at 0x056EEA90>
+print((C1.center.x, C1.center.y)) # -> (1, 2)
+```
+
+- Again, neither `def __repr__` nor `def __str__` is defined for `class Circle` => thus the plain memory address is printed when attempting to print `instance C1` itself
+- `C1.center` refers to `P1` . Since neither `repr` nor `str` is defined for `class Point`, the class for `P1`, the same memory address in the previous example is printed when attempting to print `C1.center`.
+- `C1.center.x` and `C1.center.y` refer to `P1.x` and `P1.y`, respectively.
+
+.
+
+## CLASS INHERITANCE
+
+##### Most basic form of class inheritance
+
+```python
+class Person:
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+    def greeting(self):
+        return f"Hi, I'm {self.name}."
+
+class Student(Person):
+    def __init__(self, name, age, student_id):
+        self.name = name
+        self.age = age
+        self.student_id = student_id
+
+s1 = Student('Jiwon', 24, 13377)
+
+print(s1.name, s1.age, s1.student_id)   # -> Jiwon 24 13377
+print(s1.greeting())                    # -> Hi, I'm Jiwon.      
+
+print(issubclass(Student, Person))      # -> True
+```
+
+- `Person` is the parent class, while `Student` is the child class
+- The student class's `__init__` method must include all instance variables defined in the parent class
+  - [Parent] `Person` : `name`, `age`
+  - [Child] `Student` : `name`, `age` + `student_id`
+- Instances of the child class can access any instance methods defined in the parent class
+  - e.g) `greeting()`
+
+- `issubclass(child, parent)`
+
+##### super() : reduces redundancy
+
+The above inherited class definition can be rewritten as follows:
+
+```python
+class Person:
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+    def greeting(self):
+        return f"Hi, I'm {self.name}."
+
+class Student(Person):
+    def __init__(self, name, age, student_id):
+        super().__init__(name, age)            ### super()
+        self.student_id = student_id
+```
+
+- `Person()` may be used instead of `super()`
+
+##### Method Overriding: Modifying a method inherited from a parent class
+
+```python
+class Person:
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+    def greeting(self):
+        return f"Hi, I'm {self.name}."
+
+class Student(Person):
+    def __init__(self, name, age, student_id):
+        super().__init__(name, age)     # may also write "Person()" instead of "super()"
+        self.student_id = student_id
+    def greeting(self):
+        return f"Hi, I'm {self.name}. - Student"
+    
+    
+p1 = Person('Some Person', 30)
+s1 = Student('Jiwon', 24, 13377)
+
+print(p1.greeting())              # -> Hi, I'm Some Person.
+print(s1.greeting())              # -> Hi, I'm Jiwon. - Student
+```
+
+- The proximity rule applies for the `greeting()` method.
+
+
+
+
+
+
+
+
+
 
 
 .
@@ -257,7 +387,6 @@ Instance Juliet has been deleted.
 
 ## unfinished - oop2.ipynb
 
-- 연산자 오버라이딩 (중복 정의)
 - 상속
 - super()
 - operator overloading (function overloading)
