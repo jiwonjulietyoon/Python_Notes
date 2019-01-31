@@ -86,12 +86,13 @@ class Person:
         Person.population += 1  
     def __del__(self):
         print(f"Instance {self.name} has been deleted.")
+        Person.population -= 1
     def __repr__(self):
         return f"[repr]Instance {self.name} of Person Class"
     def __str__(self):
         return f"[str]Instance {self.name} of Person Class"
     def introduce(self):
-        print(f"Hi, I am {self.name}. I'm {self.age} yrs old and my gender is {self.gender}.")
+        print(f"Hi, I'm {self.name}. I'm {self.age}. My gender is {self.gender}.")
     def add_cash(self, money):
         self.cash += money
     def print_cash(self):
@@ -168,7 +169,7 @@ Hi, I am John. I'm 30 yrs old and my gender is M.
 Current Population: 3
 ```
 
-- **Class variables**: data shared by all instances
+- data shared by all instances
   - defined outside `__init__`
   - can be accessed by both instances and the class itself
     - e.g) `Person.population`, `jiwon.population`
@@ -340,7 +341,7 @@ class Student(Person):
         self.student_id = student_id
 ```
 
-- `Person()` may be used instead of `super()`
+- 
 
 ##### Method Overriding: Modifying a method inherited from a parent class
 
