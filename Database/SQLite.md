@@ -171,6 +171,20 @@ WHERE colName = value;
 
 
 
+sqlite3 pjt.sqlite3
+
+.read 01_create_table.sql
+
+.mode csv
+
+.import boxoffice.csv movies
+
+.headers on
+
+.mode column
+
+
+
 
 
 
