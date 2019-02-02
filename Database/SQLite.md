@@ -33,7 +33,7 @@
 - `.tables` : print names of all tables in the database
 - `.mode column`: when printing records, align by column
 - `.headers on`: when printing records, also print each respective column name
-- `.schema tableName`: print all columns & data type of _table_
+- `.schema tableName`: print all columns & data type of _tableName_
 - `.read fileName.sql` : run whatever commands are saved in _fileName.sql_
 
 
@@ -163,25 +163,6 @@ WHERE colName = value;
 
 
 
-## 
-
-
-
-
-
-
-
-sqlite3 pjt.sqlite3
-
-.read 01_create_table.sql
-
-.mode csv
-
-.import boxoffice.csv movies
-
-.headers on
-
-.mode column
 
 
 
