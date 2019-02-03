@@ -1,6 +1,9 @@
 ## Database 기본 용어
 
+- __Database__: 체계화된 데이터의 모임 (파일은 체계화되지 않음)
 - __RDBMS__: Relational Database Management System
+  - e.g) MySQL, SQLite
+  - SQLite: 경량 / 서버가 아닌 응용프로그램에 넣음 / c9등에 기본 탑재
 - __CRUD__: Create, Read, Update, Delete
 - __TABLE__: collection of records
 - __COLUMN__: one data info
@@ -14,17 +17,11 @@
 - `sqlite3 DBName.sqlite3` to access database (or create a new database if it already doesn't exist)
 - Ctrl + D   or `.exit` to quit
 - 명령어:
-  - `.` 으로 시작하는 명령어 (does not end with a semicolon)
-  - All-caps commands end with a semicolon (may insert line breaks in between)
+  - SQLite commands: `.` 으로 시작하는 명령어 (does not end with a semicolon)
+  - SQL statements: All-caps commands end with a semicolon (may insert line breaks in between)
     - all-caps are NOT mandatory, but conventional in terms of readability
 
 
-
-## csv파일로부터 데이터베이스 불러오기
-
-`.mode csv`
-
-`.import fileName.csv tableName`
 
 
 
@@ -35,6 +32,7 @@
 - `.headers on`: when printing records, also print each respective column name
 - `.schema tableName`: print all columns & data type of _tableName_
 - `.read fileName.sql` : run whatever commands are saved in _fileName.sql_
+- `.mode csv` => `.import fileName.csv tableName` : csv파일로부터 데이터 레코드 불러오기
 
 
 
@@ -96,7 +94,7 @@ FROM tableName           # -> mandatory
 #### ORDER BY : sort selected records by specified columns
 
 - `ORDER BY colName1, colName2`: _colName1_ is the primary sorting standard while _colName2_ is the secondary standard
-- `ORDER BY colName DESC` : sort in descending order (default is ascending order)
+- `ORDER BY colName1 ASC, colName2 DESC` : DESC => sort in descending order (default is ascending order)
 
 #### LIMIT : maximum number of selected records to display
 
