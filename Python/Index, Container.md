@@ -617,7 +617,9 @@ my_dict.update(apple='사과아')
 print(my_dict)   # -> {'apple': '사과아', 'banana': '바나나', 'melon': '멜론'}
 ```
 
+##### Merging two dictionaries
 
+`dict(B, **A)` : Create a new dictionary with A's properties extended by B, without overwriting => similar to `list.extend()`, but does NOT modify the original dictionary.
 
 .
 

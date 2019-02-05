@@ -198,6 +198,10 @@ sum(sample, 100)          # -> 115
   - `print(int(1.8), type(int(1.8)))` => `1 <class 'int'>`  (1.8 => 1)
 - 문자열은 integer type으로 형변환할 수 없다.
   - `print(int('abc'))` => this will raise a 'ValueError'
+- `int(str, integer)` where `str` consists of digits only and `integer` defaults to `10`
+  - => return `int(str)` with `integer` as the base
+  - e.g) `int('11111', 2)` => `31`
+  - e.g2) `int('00011', 2)` => `3`   (no need to `lstrip` the 0's beforehand)
 
 .
 
@@ -215,6 +219,17 @@ sum(sample, 100)          # -> 115
 - int()와 마찬가지로, 문자열은 float()을 사용할 수 없다 (ValueError 발생)
 
 .
+
+## dict()
+
+##### dict(**kwargs)
+
+- Create a new dictionary out of **kwargs. If there is no argument, create a blank dictionary
+
+##### dict(iterable, **kwargs)
+
+- **iterable**: Each item in the iterable must itself be an iterable with exactly two objects. The first object of each item becomes a key in the new dictionary, and the second object the corresponding value. If a key occurs more than once, the last value for that key becomes the corresponding value in the new dictionary.
+- **kwargs**: If keyword arguments are given, the keyword arguments and their values are added to the dictionary created from the positional argument. If a key being added is already present, the value from the keyword argument replaces the value from the positional argument.
 
 ## eval()
 

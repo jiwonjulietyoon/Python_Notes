@@ -10,7 +10,9 @@
 
 `%-10.8d` => `-`(align left), `10`(min field width), `.8`(fill; 인자 앞에 남는 자리는 0으로 채움)
 
-- ex) `print('|%-10.8d|' % 555)`    => |00000555  |
+- ex) `print('|%-10.8d|' % 555)`    => `|00000555  |`
+- Note) `str.zfill(width)` : pads string on the left with '0's, until `len(str)` becomes `width`
+  - ex) `"111".zfill(7)` => `0000111`
 
 ##### - %f : float
 
