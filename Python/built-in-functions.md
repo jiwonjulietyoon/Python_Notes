@@ -74,14 +74,25 @@ print('Percent: %d%%' % 100)
 
 ##### print(*objects, sep=' ', end='\n')
 
-Default: objects are separated with a space and followed by a line break
-
-The following code will result in "Life.is.short!You,need,Python":
+Default: _objects_ are separated with a space and followed by a line break
 
 ```python
 print('Life', 'is', 'short', sep='.', end='!')
 print('You', 'need', 'Python', sep=',')
+
+# -> Life.is.short!You,need,Python
 ```
+
+```python
+numbers = [11, 22, 33, 44, 55, 66, 77]
+
+print(numbers)  # => [11, 22, 33, 44, 'aa', 'bb', 'cc']
+print(*numbers) # => 11 22 33 44 aa bb cc
+```
+
+
+
+
 
 .
 
