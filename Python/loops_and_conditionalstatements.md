@@ -296,6 +296,104 @@ for x in range(12):
 
 
 
+# Try ... Except
+
+### Handling anticipated errors
+
+- `try`: execute when no errors are raised
+- `except`: execute when an error _is_ raised
+- `except ~~Error`: execute only when the specified type of error is raised
+  - e.g) NameError, IndexError, SyntaxError, ModuleNotFoundError, KeyError, ImportError, TypeError, ValueError, ZeroDivisionError, ...
+- `else`: execute when no errors are raised
+  - (placed after `try ... except`)
+- `finally`: always execute, error or no error
+
+##### Ex) Without using `try ... except`
+
+```python
+s = "word"
+
+for i in range(6):
+    print(f"#{i}: {s[i]}")
+
+##### result:
+#0: w
+#1: o
+#2: r
+#3: d
+---------------------------------------------------------------------------
+IndexError                                Traceback (most recent call last)
+<ipython-input-27-f3211b1689cd> in <module>()
+      2 
+      3 for i in range(6):
+----> 4     print(f"#{i}: {s[i]}")
+
+IndexError: string index out of range
+```
+
+##### Ex) With `try ... except`
+
+```python
+s = "word"
+
+for i in range(6):
+    try:
+        print(f"#{i}: {s[i]}")
+    except:
+        print(f"#{i}: No more letters to print")
+
+##### result:
+#0: w
+#1: o
+#2: r
+#3: d
+#4: No more letters to print
+#5: No more letters to print
+```
+
+##### Ex) `try ... except ... else ... finally`
+
+```python
+s = "word"
+
+for i in range(6):
+    try:
+        print(f"#{i}: {s[i]}")
+    except IndexError:
+        print(f"#{i}: IndexError - No more letters to print")
+    except:
+        print("Other type of error")
+    else:
+        print("Else - No errors")
+    finally:
+        print("Finally - Always Execute\n")
+        
+##### result:
+#0: w
+Else - No errors
+Finally - Always Execute
+
+#1: o
+Else - No errors
+Finally - Always Execute
+
+#2: r
+Else - No errors
+Finally - Always Execute
+
+#3: d
+Else - No errors
+Finally - Always Execute
+
+#4: IndexError - No more letters to print
+Finally - Always Execute
+
+#5: IndexError - No more letters to print
+Finally - Always Execute
+```
+
+
+
 
 
 
