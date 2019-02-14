@@ -43,6 +43,7 @@ Ex) Project name : `practice`
 
 - `mkdir PRACTICE`
   - for readability, the name of the main folder should be written in all-caps
+  - Note that `PRACTICE` is NOT the name of the project
 - `cd PRACTICE`
 
 ##### Set up Virtual Environment
@@ -104,8 +105,129 @@ Ex) Application name: `pages`
 - `python manage.py startapp pages` to create new app
 - In `PRACTICE/practice/settings.py`:
   - add `'pages',` as the last item of `INSTALLED_APPS`
+- In `PRACTICE/practice/urls.py`:
+  - add `from pages import views` toward top of document
 - Create a new `templates/` folder under `PRACTICE/pages` 
   - (this is where all `html` files will go)
+
+##### Routing - Basic
+
+- In `PRACTICE/pages/views.py`, add:
+
+  - ```python
+    def index(request):
+        return render(request, 'index.html')
+    ```
+
+  - (where `index` is the path name)
+
+  - `request` must always be the first argument
+
+- In `PRACTICE/practice/urls.py`, add:
+
+  - `path('index/', views.index),` as last item of `urlpatterns`
+  - Note) Path format: `path(url_path_name, 해당 요청을 다룰 view 함수),`
+    - e.g) `path('index/', views.index),`  => https://django-prac-whitejcme.c9users.io/index/
+    - e.g2) `path('', views.index),` =>  https://django-prac-whitejcme.c9users.io/ (will render `index.html`)
+
+- Create `index.html` under `PRACTICE/pages/templates/`
+
+##### Routing - Transferring data/variables to the corresponding html file
+
+- `PRACTICE/pages/views.py`
+
+  - ```python
+    def index(request):
+        name = "Jiwon"
+        msg = "Hello"
+        return render(request, 'index.html', {'name': name, 'msg': msg})
+    ```
+
+  - OR
+
+  - ```python
+    def index(request):
+        name = "Jiwon"
+        msg = "Hello"
+        context = {
+            'name': name,
+            'msg': msg
+        }
+        return render(request, 'index.html', context)
+    ```
+
+  - (transfer in python dictionary format)
+
+##### Variable Routing (e.g cube)
+
+- `PRACTICE/pages/views.py`
+
+  - ```python
+    def cube(request, number):
+        # 사용자로부터 URL을 통해 입력 받은 값을 세제곱한다.
+        result = number ** 3
+        return render(request, 'cube.html', {'result': result})
+    ```
+
+- `PRACTICE/practice/urls.py`
+
+  - add `path('cube/<int:number>', views.cube),` as last item of `urlpatterns`
+
+- create `cube.html` under `PRACTICE/pages/templates/` 
+
+  - ```html
+    <h1>Cubed: {{result}}</h1>
+    ```
+
+
+
+
+
+# HTML Template
+
+In `PRACTICE/pages/templates/`:
+
+##### Template file: `base.html`
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{% block title %}{% endblock %}</title>
+</head>
+<body>
+    
+    {% block body %}
+    {% endblock %}
+
+</body>
+</html>
+```
+
+##### Example html file using the above template
+
+```html
+{% extends 'base.html' %}
+
+{% block title %}
+Django Homepage
+{% endblock %}
+
+{% block body %}
+    <h1>Django!</h1>
+    <h2>Name: {{name}}</h2>
+    <h3>Message: {{msg}}</h3>
+{% endblock %}
+```
+
+
+
+
+
+
 
 
 

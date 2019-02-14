@@ -44,7 +44,71 @@
   ```
 
 
-### Other
+### 
+
+
+
+# Environment Variables
+
+Before pushing codes and/or notes to GitHub, always check if there are any confidential info included, e.g telegram API tokens. Set these as environment variables.
+
+### On Windows (via GitBash)
+
+1. `code ~/.bashrc` => open `.bashrc` (where environment variables are stored) on VSCode
+
+2. Add environment variables (preferably toward the end of the document) in this format:
+
+   - `export TELEGRAM_TOKEN='123456'`
+   - `export NAME='Jiwon'`
+   - Environment variable names typically use all-caps and underscores
+   - No spaces except for the one right after 'export'
+
+3. Save `.bashrc` (on VSCode)
+
+4. (back on GitBash) `source ~/.bashrc`  => apply changes within OS
+
+5. `echo $TELEGRAM_TOKEN` => upon success, this will print whatever data is saved in the environment variable 'TELEGRAM_TOKEN'
+
+6. To access environment variables in Python:
+
+   ```python
+   import os
+   token = os.getenv('TELEGRAM_TOKEN')
+   # where TELEGRAM_TOKEN is an environment variable stored in .bashrc
+   ```
+
+### On Windows (cmd창 용)
+
+To store environment variables:
+
+1. win_key + Pause => 고급 시스템 설정
+2. => 고급 => 환경 변수 => 시스템 변수 => 새로 만들기 
+3. => 저장
+
+### On c9.io (Flask, Django)
+
+1. Use bash terminal.
+
+2. `c9 ~/.bashrc` to open .bashrc file, and append variables at the end of the document
+
+3. Rest of the procedure is identical to that of Windows
+
+##### With Django (via terminal)
+
+1. Deactivate server
+2. `c9 ~/.bashrc` to open .bashrc file, and append environment variables at the end of the document (`export ~~='~~'`)
+3. `source ~/.bashrc`
+   1. this will create a new virtual environment within the current virtual environment
+4. `source deactivate`  to break from the additionally created virtual environment
+
+### On Mac OS
+
+Procedures are identical to that of Windows, except:
+
+`.bashrc` ==> `.bash_profile`
+
+
+
 
 
 
