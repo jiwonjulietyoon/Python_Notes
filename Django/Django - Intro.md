@@ -227,6 +227,10 @@ Django Homepage
 
 
 
+# Django Conventions
+
+- trailing comma
+
 
 
 
