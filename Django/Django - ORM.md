@@ -151,6 +151,8 @@ admin.site.register(Job, JobAdmin)  #(_3_)
 - 1) `.models` refers to the `models.py` file located in the same directory as the above `admin.py` file
 - 2) Optional
   - Designate which fields to display on the Admin Page list
+    - Each item in #2-1) becomes a column
+  - If `list_display` is not set, the Admin Page will display a single column of the `__str__()` representation of each object
   - 2-1) Must be in tuple or list format, e.g) `('name', )`
 - 3) If `class JobAdmin` is not defined, replace with: `admin.site.register(Job)`
 
