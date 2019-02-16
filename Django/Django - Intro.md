@@ -183,48 +183,6 @@ Ex) Application name: `pages`
 
 
 
-# HTML Template
-
-In `PRACTICE/pages/templates/`:
-
-##### Template file: `base.html`
-
-```html
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <!-- Bootstrap CSS link -->
-    <title>{% block title %}{% endblock %}</title>
-</head>
-<body>
-    {% block body %}
-    {% endblock %}
-	<!-- Bootstrap JS link -->
-</body>
-</html>
-```
-
-##### Example html file using the above template
-
-```html
-{% extends 'base.html' %}
-
-{% block title %}
-Django Homepage
-{% endblock %}
-
-{% block body %}
-    <h1>Django!</h1>
-    <h2>Name: {{name}}</h2>
-    <h3>Message: {{msg}}</h3>
-{% endblock %}
-```
-
-
-
 
 
 # Django Conventions
