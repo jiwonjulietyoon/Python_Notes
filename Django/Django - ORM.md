@@ -104,6 +104,7 @@ Example) Model name: `Article` ; Columns: `id`, `title`, `content`
 
 - `Article.objects.order_by('id').all()` : (default) ascending order
 - `Article.objects.order_by('-id').all()` : descending order
+  - `Article.objects.all().order_by('-id')` also works
 
 ##### Further manipulating query results (python List format)
 
