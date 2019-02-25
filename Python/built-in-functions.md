@@ -480,7 +480,9 @@ sample = [2, 7, 11, 4, 21, 9, 100]
 sorted(sample, key=addDigits, reverse=True)
 ```
 
-
+- Applying multiple keys is also possible
+  - e.g) `sort(key=lambda x: (x[0]*x[1], x[0]))`
+  - => sort first by the value of `x[0]*x[1]`, and then secondarily by the value of `x[0]` (for when there are multiple same values of `x[0]*x[1]`)
 
 
 
