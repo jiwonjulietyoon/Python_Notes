@@ -75,11 +75,18 @@ Ex) Project name : `practice`
     1 directory, 5 files
     ```
 
+- **Additional)** 
+
+  - Pycharm Pro - Create new project with the 'Django' Template (base interpreter should preferably be Python 3.7+), and IDE will automatically create everything until this point.
+  - `pip install ipython django_extensions`  (may be installed along with `django`)
+    - add `django_extensions` to  `INSTALLED_APPS` in `settings.py`
+
 ##### Validify HTTP_HOST header
 
 - In `settings.py` (`PRACTICE/practice/settings.py`), modify:
   - e.g): `ALLOWED_HOSTS = ['django-prac-whitejcme.c9users.io']`
-  - (where `django-prac` is the name of the workspace)
+      - (where `django-prac` is the name of the workspace)
+  - OR, `ALLOWED_HOSTS = ['*']` also works (esp. for Pycharm Pro initiated local projects)
 
 ##### Internationalization : Adjust server time zone and language
 
@@ -93,6 +100,7 @@ Ex) Project name : `practice`
 
 - `python manage.py runserver $IP:$PORT`
   - `$IP:$PORT` is for C9 only
+- Via local environment: `python manage.py runserver` and then access `http://localhost:8000/` on a webbrowser
 
 
 

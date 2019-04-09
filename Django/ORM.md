@@ -62,12 +62,23 @@ Example) Model name: `Article` ; Columns: `id`, `title`, `content`
 - **[Python Shell]** `from articles.models import Article`
 - **[`views.py`]** `from .models import Article`
 
+##### Alternatively, with `django_extensions` and `ipython`:
+
+- `python manage.py dbshell`  (instead of `sqlite3 db.sqlite3`)
+- `python manage.py shell`  - console format will have changed
+  - e.g) `In [1]: from articles.models import Article` 
+  - syntax highlighting available => thanks to django_extensions and ipython
+  - Modify DB via commands such as `article = Article(title="Title Test", content="Content Test")`, `article.save()` , etc.
+  - `exit()` to exit
+- `python manage.py shell_plus` 
+  - automatically imports `from articles.models import Article` etc 
+
 ### CREATE
 
-- Op 1) `a = Article(title="Happy", content="Hacking")`
+- Option 1) `a = Article(title="Happy", content="Hacking")`
   `a.save()`
   - where `save()` is equivalent to making commits
-- Op 2) `Article.objects.create(title="Happy", content="Hacking")`
+- Option 2) `Article.objects.create(title="Happy", content="Hacking")`
   - one-liner
 
 ### READ
