@@ -77,7 +77,7 @@ Ex) Project name : `practice`
 
 - **Additional)** 
 
-  - Pycharm Pro - Create new project with the 'Django' Template (base interpreter should preferably be Python 3.7+), and IDE will automatically create everything until this point.
+  - **Pycharm Pro: Start here** - Create new project with the 'Django' Template (base interpreter should preferably be Python 3.7+), and IDE will automatically create everything until this point.
   - `pip install ipython django_extensions`  (may be installed along with `django`)
     - add `django_extensions` to  `INSTALLED_APPS` in `settings.py`
 
