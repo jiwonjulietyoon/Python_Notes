@@ -12,27 +12,77 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style_main.css">
     <title>List</title>
 </head>
 
 <body>
 
     <div id="wrap">
+        <!-- N A V -->
         <nav>
-            <div class="nav_menu">Menu</div>
-            <div class="nav_view_mode">View Mode</div>
+            <div class="nav_menu">
+                <div class="hamburger"></div>
+                <div class="hamburger"></div>
+                <div class="hamburger"></div>
+            </div>
+            <div class="nav_header">All Notes</div>
+            <div class="nav_view_mode">
+                <div class="view_grid">
+                    <div class="grid_square"></div>
+                    <div class="grid_square"></div>
+                    <div class="grid_square"></div>
+                    <div class="grid_square"></div>
+                </div>
+                <div class="view_row">
+                    <div class="row_rec"></div>
+                    <div class="row_rec"></div>
+                </div>
+            </div>
         </nav>
-        <div class="main_list">
-            <div class="memo_card h-200"></div>
-            <div class="memo_card h-150"></div>
-            <div class="memo_card h-200"></div>
-            <div class="memo_card h-200"></div>
-            <div class="memo_card h-150"></div>
-            <div class="memo_card h-200"></div>
-            <div class="memo_card h-200"></div>
-            <div class="memo_card h-150"></div>
+
+        <!-- MENU -->
+        <aside class="menu_aside">
+            <div class="menu_logo">ServiceName (logo)</div>
+            <div class="menu_item">All Notes</div>
+            <ul class="label_list">
+                <li class="menu_item">Label 1 SSAFY</li>
+                <li class="menu_item">Label 2 Algorithm</li>
+                <li class="menu_item">Label 3 Django Web</li>
+            </ul>
+            <div class="menu_item">Add New Label</div>
+            <div class="menu_item">Logout</div>
+        </aside>
+
+        <!-- MAIN CONTENT -->
+        <div class="main_content">
+        
+            <div class="shadow"></div>
+
+            <!-- CARDS -->
+            <div class="memo_cards">
+                <div class="memo_card h-200"></div>
+                <div class="memo_card h-150"></div>
+                <div class="memo_card h-200"></div>
+                <div class="memo_card h-200"></div>
+                <div class="memo_card h-150"></div>
+                <div class="memo_card h-200"></div>
+                <div class="memo_card h-200"></div>
+                <div class="memo_card h-150"></div>
+            </div>
+            
+            <a href="#">
+                <div class="add_new">
+                    <div class="plus_sign"></div>
+                    <div class="plus_sign"></div>
+                </div>
+            </a>
+
+
+        <!-- end div.main_content -->
         </div>
+    
+    <!-- end div#wrap -->
     </div>
 
 

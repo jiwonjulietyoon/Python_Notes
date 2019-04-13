@@ -1,0 +1,242 @@
+#wrap {
+    width: 100%;
+    position: relative;
+}
+
+
+
+/* * * * * * * NAV * * * * * * */
+nav {
+    width: 100%;
+    height: 45px;
+    line-height: 45px;
+    background: #FFCF4A;
+    position: fixed;
+    z-index: 99999;
+}
+
+.nav_menu {
+    width: 45px;
+    height: 100%;
+    float: left;
+    position: relative;
+}
+.hamburger {
+    width: 60%;
+    height: 3px;
+    background: #8c8c8c;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%);
+    top: 30%;
+    border-radius: 2px;
+}
+.hamburger:nth-child(2) {
+    top: 45%;
+}
+.hamburger:last-child {
+    top: 60%;
+}
+
+.nav_header {
+    height: 100%;
+    float: left;
+    color: #181818;
+    padding-left: 10px;
+    letter-spacing: 1px;
+}
+
+.nav_view_mode {
+    width: 45px;
+    height: 100%;
+    float: right;
+    position: relative;
+}
+.view_grid, .view_row {
+    position: absolute;
+    top: 27%;
+    left: 27%;
+    bottom: 27%;
+    right: 27%;
+}
+.grid_square {
+    width: 8px;
+    height: 8px;
+    position: absolute;
+    /* background: #8c8c8c; */
+}
+.grid_square:nth-child(2) {
+    right: 0;
+}
+.grid_square:nth-child(3) {
+    bottom: 0;
+}
+.grid_square:last-child {
+    bottom: 0; right: 0;
+}
+.view_row {
+    top: 30%; bottom: 30%;
+}
+.row_rec {
+    width: 110%;
+    height: 7px;
+    position: absolute;
+    background: #8c8c8c;
+    left: -5%;
+}
+.row_rec:last-child {
+    bottom: 0;
+}
+
+
+/* * * * * * * MENU * * * * * * */
+.menu_aside {
+    width: calc(100% - 105px);
+    height: calc(100vh - 45px);
+    margin-top: 45px;
+    position: fixed;
+    z-index: 999;
+    background: white;
+    box-shadow: 1px 1px 10px 2px rgba(131, 131, 131, 0.5);
+}
+@media screen and (min-width: 600px) and (max-width: 920px) {
+    .menu_aside {
+        width: 50%;
+    }
+}
+@media screen and (min-width: 921px){
+    .menu_aside {
+        width: 270px;
+        box-shadow: none;
+        border-right: 1px solid #8c8c8c;
+    }
+}
+.menu_logo {
+    width: 100%;
+    height: 60px;
+    line-height: 60px;
+    margin-bottom: 10px;
+    /* background: lightcoral; */
+}
+.menu_item {
+    width: 100%;
+    height: 50px;
+    line-height: 50px;
+    /* background: lightgreen; */
+}
+
+.label_list {
+    width: 100%;
+    list-style: none;
+    padding-inline-start: 0;
+    margin-bottom: 0;
+    border-top: 1px solid #8c8c8c;
+    border-bottom: 1px solid #8c8c8c;
+}
+.label_list > li {
+    width: 100%;
+    display: block;
+}
+
+
+/* * * * * * * * * * * * * * * * * * * * */
+/* * * * * * * MAIN CONTENT * * * * * * */
+/* * * * * * * * * * * * * * * * * * * * */
+
+.main_content {
+    width: 100%;
+    padding-top: 45px;
+    overflow: hidden;
+    position: relative;
+}
+
+@media screen and (min-width: 921px){
+    .main_content {
+        width: calc(100% - 270px);
+        margin-left: 270px;
+    }
+}
+
+
+
+
+
+
+
+/* * * * * * * CARDS * * * * * * */
+
+.shadow {
+    width: 100%;
+    height: calc(100vh - 45px);
+    background: rgba(0, 0, 0, 0.4);
+    position: fixed;
+}
+@media screen and (min-width: 921px){
+    .shadow {
+        opacity: 0;
+    }
+}
+
+.memo_card {
+    float: left;
+    width: calc((100% - 30px) / 2);
+    height: 200px;
+    border: 1px solid hotpink;
+    margin-left: 10px;
+    margin-top: 10px;
+}
+
+@media screen and (min-width: 768px) and (max-width: 920px) {
+    .memo_card {
+        width: calc((100% - 40px) / 3);
+    }
+}
+
+@media screen and (min-width: 921px){
+    .memo_card {
+        width: calc((100% - 50px) / 4);
+    }
+}
+
+.h-200 {
+    height: 200px;
+}
+.h-150 {
+    height: 150px;
+}
+
+
+
+/* * * * * * * ADD NEW MEMO * * * * * * */
+
+@keyframes bobbing {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-10px); }
+}
+
+.add_new:hover {
+    animation: bobbing 1s infinite alternate;
+}
+
+.add_new {
+    position: fixed;
+    right: 25px;
+    bottom: 25px;
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    background: #FFCF4A;
+}
+.plus_sign {
+    position: absolute;
+    width: 40%;
+    height: 2px;
+    background: #8c8c8c;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 1px;
+}
+.plus_sign:last-child {
+    transform: translate(-50%, -50%) rotate(90deg);
+}
+
