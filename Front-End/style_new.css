@@ -36,6 +36,7 @@ header {
 /* * * * * * * MAIN SECTION * * * * * * */
 section {
     width: 100%;
+    height: calc(100vh - 160px);
     overflow: hidden;
     margin: 80px 0;
     /* background: pink; */
@@ -53,6 +54,54 @@ section {
     box-shadow: none;
     margin: 0 5px;
 }
+
+.memo_title {
+    margin: 0 5px 10px;
+}
+.memo_plain_text {
+    width: 100%;
+    margin: 0 5px;
+    height: calc(100vh - 220px);
+    overflow: scroll;
+}
+
+
+/* * * * * * * LABEL SELECT BOX * * * * * * */
+.label_select_box {
+    width: calc(100% - 10px);
+    height: 250px;
+    background: #EEEEEE;
+    border-radius: 5px;
+    position: absolute;
+    left: 5px;
+    bottom: 90px;
+    overflow: scroll;
+}
+@media screen and (min-width: 921px){
+    .label_select_box {
+        width: 910px;
+    }
+}
+.label_select_box:after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 120px;
+    width: 0; height: 0;
+    border-right: 25px solid transparent;
+    border-top: 20px solid red;
+    border-left: 25px solid transparent;
+}
+.label_select_box > ul {
+    padding-left: 20px;
+    height: 100%;
+    list-style: none;
+}
+.label_select_box > ul > li {
+    height: calc(100% / 5);
+}
+
+
 
 
 

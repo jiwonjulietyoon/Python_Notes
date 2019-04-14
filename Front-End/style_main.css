@@ -21,6 +21,14 @@ nav {
     float: left;
     position: relative;
 }
+.nav_menu:hover {
+    cursor: pointer;
+}
+@media screen and (min-width: 921px){
+    .nav_menu:hover {
+        cursor: initial;
+    }
+}
 .hamburger {
     width: 60%;
     height: 3px;
@@ -95,6 +103,7 @@ nav {
     height: calc(100vh - 45px);
     margin-top: 45px;
     position: fixed;
+    left: -100%;
     z-index: 999;
     background: white;
     box-shadow: 1px 1px 10px 2px rgba(131, 131, 131, 0.5);
@@ -111,6 +120,16 @@ nav {
         border-right: 1px solid #8c8c8c;
     }
 }
+
+.shadow {
+    width: 100%;
+    height: calc(100vh - 45px);
+    background: rgba(0, 0, 0, 0.4);
+    position: fixed;
+    opacity: 0;
+}
+
+
 .menu_logo {
     width: 100%;
     height: 60px;
@@ -149,7 +168,6 @@ nav {
     overflow: hidden;
     position: relative;
 }
-
 @media screen and (min-width: 921px){
     .main_content {
         width: calc(100% - 270px);
@@ -165,23 +183,12 @@ nav {
 
 /* * * * * * * CARDS * * * * * * */
 
-.shadow {
-    width: 100%;
-    height: calc(100vh - 45px);
-    background: rgba(0, 0, 0, 0.4);
-    position: fixed;
-}
-@media screen and (min-width: 921px){
-    .shadow {
-        opacity: 0;
-    }
-}
+
 
 .memo_card {
     float: left;
     width: calc((100% - 30px) / 2);
     height: 200px;
-    border: 1px solid hotpink;
     margin-left: 10px;
     margin-top: 10px;
 }
@@ -203,6 +210,27 @@ nav {
 }
 .h-150 {
     height: 150px;
+}
+.h-170 {
+    height: 170px;
+}
+.bg_red {
+    background: #ff9a9a;
+}
+.bg_yellow {
+    background: #f6f08a;
+}
+.bg_green {
+    background: #b5f48e;
+}
+.bg_teal {
+    background: #8bded4;
+}
+.bg_blue {
+    background: #9cb2ff;
+}
+.bg_purple {
+    background: #d3a1ff;
 }
 
 

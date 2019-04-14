@@ -1,4 +1,4 @@
-<!-- 새로운 메모 작성하는 화면 -->
+<!-- 메모 상세 페이지 -->
 
 <!doctype html>
 <html lang="en">
@@ -13,7 +13,7 @@
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
     <link rel="stylesheet" href="style_new.css">
-    <title>New</title>
+    <title>Detail</title>
 </head>
 
 <body>
@@ -25,13 +25,36 @@
             <div class="edit_btn"></div>
         </header>
         <section>
-            <form method="POST" action="#">
-                <input type="text" class="form-control form-control-lg input_title" name="title" placeholder="Title">
-                <textarea class="form-control input_plain_text" name="plain_text" rows="10">Note</textarea>
-                <!-- submit button? -->
-            </form>
-            
+            <h4 class="memo_title">Sonnet 18</h4>
+            <p class="memo_plain_text">Shall I compare thee to a summer’s day?<br>
+                    Thou art more lovely and more temperate.<br>
+                    Rough winds do shake the darling buds of May,<br>
+                    And summer’s lease hath all too short a date.<br>
+                    Sometime too hot the eye of heaven shines,<br>
+                    And often is his gold complexion dimmed;<br>
+                    And every fair from fair sometime declines,<br>
+                    By chance, or nature’s changing course, untrimmed;<br>
+                    But thy eternal summer shall not fade,<br>
+                    Nor lose possession of that fair thou ow’st,<br>
+                    Nor shall death brag thou wand’rest in his shade,<br>
+                    When in eternal lines to Time thou grow’st.<br>
+                    So long as men can breathe, or eyes can see,<br>
+                    So long lives this, and this gives life to thee.
+                    </p>
         </section>
+        <div class="label_select_box">
+            <ul>
+                <li>Label 1 SSAFY</li>
+                <li>Label 2 Algorithm</li>
+                <li>Label 3 Django Web</li>
+                <li>Label 4 Javascript JQuery</li>
+                <li>Label 5 Python</li>
+                <li>Label 6 Database</li>
+                <li>Label 7 ORM</li>
+                <li>Label 8 Other</li>
+            </ul>
+            <div class="box_pointer"></div>
+        </div>
         <footer>
             <div class="checkbox_btn"></div>
             <div class="img_btn"></div>
