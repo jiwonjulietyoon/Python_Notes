@@ -2,12 +2,10 @@ url = "https://koreanjson.com/posts/1"
 
 const getData = async function(){
     const response = await fetch(url);
-    const data = await response.json();
-
     console.log(response);
+    const data = response.json();
     console.log(data);
-
-    return "getData Return Value"
+    return "Return Value of getData"
 }
 
-getData();
+console.log(getData());
