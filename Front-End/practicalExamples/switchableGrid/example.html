@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    
+    <!-- VUE.JS CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    
+    <link rel="stylesheet" href="example.css">
+    
+
+</head>
+<body>
+    
+    <form id="main" v-cloak>
+
+        <div class="bar">
+    
+            <!-- These two buttons switch the layout variable,
+                 which causes the correct UL to be shown. -->
+    
+            <a class="list-icon" v-bind:class="{ 'active': layout == 'list'}" v-on:click="layout = 'list'"></a>
+            <a class="grid-icon" v-bind:class="{ 'active': layout == 'grid'}" v-on:click="layout = 'grid'"></a>
+        </div>
+    
+        <!-- We have two layouts. We choose which one to show depending on the "layout" binding -->
+    
+        <ul v-if="layout == 'grid'" class="grid">
+            <!-- A view with big photos and no text -->
+            <li v-for="a in articles">
+                <a v-bind:href="a.url" target="_blank"><img v-bind:src="a.image.large" /></a>
+            </li>
+        </ul>
+    
+        <ul v-if="layout == 'list'" class="list">
+            <!-- A compact view smaller photos and titles -->
+            <li v-for="a in articles">
+                <a v-bind:href="a.url" target="_blank"><img v-bind:src="a.image.small" /></a>
+                <p>{{a.title}}</p>
+            </li>
+        </ul>
+    
+    </form>
+
+    <script src="example.js"></script>
+</body>
+</html>
