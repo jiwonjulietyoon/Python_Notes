@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>NavMenu</title>
+    
+    <!-- VUE.JS CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+    <style>
+        * {padding: 0; margin: 0; box-sizing: border-box; font-family: Arial, Helvetica, sans-serif;}
+        
+        #wrap {
+            width: 550px;
+            height: 500px;
+            /* border: 1px solid hotpink; */
+            margin: 60px auto;
+        }
+
+        .navbar {
+            width: 100%;
+            height: 60px;
+            line-height: 60px;
+            list-style: none;
+            border-radius: 2px;
+            overflow: hidden;
+
+        }
+        .navbar > li {
+            width: calc(100% / 4);
+            height: 100%;
+            float: left;
+            text-align: center;
+            background: teal;
+            color: white;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+        .navbar > li:hover {
+            cursor: pointer;
+        }
+        .navbar > li.active {
+            background: rgb(191, 22, 95);
+        }
+
+        .content {
+            width: 100%;
+            height: calc(100% - 60px);
+            background: #EEEEEE;
+            padding: 50px;
+            text-align: center;
+        }
+        .content > span {
+            padding: 7px;
+            background: rgb(117, 205, 200);
+            color: white;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div id="wrap">
+        <ul class="navbar">
+            <li @click="makeCurrent('home')" :class="{active: current == 'home'}">HOME</li>
+            <li @click="makeCurrent('products')" :class="{active: current == 'products'}">PRODUCTS</li>
+            <li @click="makeCurrent('services')" :class="{active: current == 'services'}">SERVICES</li>
+            <li @click="makeCurrent('contact')" :class="{active: current == 'contact'}">CONTACT</li>
+        </ul>
+        <div class="content">
+            Current Tab: <span>{{ current | allcaps }}</span>
+        </div>
+
+    </div>
+
+    <script>
+        const app = new Vue({
+            el: '#wrap',
+            data: {
+                current: 'home',
+            },
+            methods: {
+                makeCurrent(tab) {
+                    this.current = tab;
+                }
+            },
+            filters: {
+                allcaps(word) {
+                    return word.toUpperCase()
+                }
+            }
+        });
+    </script>
+</body>
+</html>
