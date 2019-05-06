@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Order Form</title>
+    <!-- VUE.JS CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+    <style>
+        * {
+            padding: 0; margin: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+            font-weight: bold;
+            color: white;
+            font-size: 20px;
+        }
+        
+        #wrap {
+            width: 500px;
+            height: 500px;
+            /* overflow: hidden; */
+            margin: 60px auto;
+            padding: 30px 60px;
+            background: rgb(65, 146, 146);
+        }
+
+        #wrap > h2 {
+            text-align: center;
+            font-size: 40px;
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            margin-bottom: 30px;
+        }
+
+        .content {
+            width: 100%;
+            list-style: none;
+        }
+        .content > li {
+            width: 100%;
+            padding: 22px;
+            background: rgb(218, 41, 103);
+            margin-bottom: 8px;
+        }
+        .content > li.selected {
+            background: rgb(132, 196, 35);
+        }
+        .content > li > span:last-child {
+            float: right;
+        }
+
+        .total {
+            width: 100%;
+            padding: 22px;
+            border-top: 1px solid #EEEEEE;
+            margin-top: 15px;
+        }
+        .total > span:last-child {
+            float: right;
+        }
+    </style>
+</head>
+<body>
+    <div id="wrap">
+        <h2>Services</h2>
+        <ul class="content">
+            <li v-for="service in services" @click="selectToggle(service)" :class="{selected: service.selected}">
+                <span>{{ service.item }}</span>
+                <span>{{ service.price | dollar(service.price) }}</span>
+            </li>
+        </ul>
+        <div class="total">
+            <span>Total:</span>
+            <span>{{ total | dollar(total) }}</span>
+        </div>
+
+    </div>
+
+
+    <script>
+        const app = new Vue({
+            el: '#wrap',
+            data: {
+                services: [
+                    {
+                        item: "Web Development",
+                        price: 300,
+                        selected: false,
+                    },
+                    {
+                        item: "Design",
+                        price: 400,
+                        selected: false,
+                    },
+                    {
+                        item: "Integration",
+                        price: 250,
+                        selected: false,
+                    },
+                    {
+                        item: "Training",
+                        price: 220,
+                        selected: false,
+                    }
+                ],
+                total: 0
+            },
+            methods: {
+                selectToggle(service) {
+                    if (service.selected) {
+                        service.selected = false;
+                        this.total -= service.price;
+                    }
+                    else {
+                        service.selected = true;
+                        this.total += service.price;
+                    }
+                }
+            },
+            filters: {
+                dollar(price) {
+                    return "$"+price+".00"
+                }
+            }
+        });
+    </script>
+</body>
+</html>

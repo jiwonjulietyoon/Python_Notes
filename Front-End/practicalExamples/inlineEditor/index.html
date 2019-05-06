@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Inline Editor</title>
+    <!-- VUE.JS CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+    <style>
+        * {
+            margin: 0; padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+            color: rgb(53, 103, 142);
+            font-weight: bold;
+        }
+        .editBox {
+            margin: 80px auto 20px;
+            width: 300px;
+            height: 50px;
+            border: 10px solid royalblue;
+            border-radius: 3px;
+            position: relative;
+        }
+        .editBox::before {
+            position: absolute;
+            content: "";
+            width: 0; height: 0;
+            border-left: 8px solid transparent;
+            border-top: 10px solid royalblue;
+            border-right: 8px solid transparent;
+            top: 130%;
+            left: 50%;
+            transform: translate(-50%);
+        }
+
+        .editBox input {
+            width: 100%;
+            height: 100%;
+            font-size: 22px;
+            text-align: center;
+        }
+        
+        .content {
+            font-size: 22px;
+            text-align: center;
+        }
+        .content:before {
+            content: '✎ ';
+        }
+
+    </style>
+</head>
+<body>
+    
+    <div id="wrap" @click="hide()">
+        <div class="editBox" v-if="show">
+            <input type="text" v-model="msg">
+        </div>
+        <div class="content" @click.stop="showToggle()">{{ msg }}</div>
+
+    </div>
+
+    <script>
+        const app = new Vue({
+            el: "#wrap",
+            data: {
+                msg: 'Edit me.',
+                show: false,
+            },
+            methods: {
+                showToggle() {
+                    this.show = !this.show;
+                },
+                hide() {
+                    this.show = false;
+                }
+            }
+        });
+    </script>
+</body>
+</html>

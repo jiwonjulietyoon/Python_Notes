@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Movie</title>
+
+    <!-- VUE.JS CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+    <!-- AXIOS CDN -->
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+    <style>
+        * {
+            margin: 0; padding: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            box-sizing: border-box;
+        }
+        
+        #wrap {
+            /* overflow: hidden; */
+            position: relative;
+        }
+
+
+        .selectedCol {
+            position: fixed;
+            width: 300px;
+            height: 100vh;
+            border: 1px solid cornflowerblue;
+            padding: 50px 20px 10px;
+            color: gray;
+        }
+
+        .selList {
+            list-style: none;
+            width: calc(100% - 40px);
+            height: 100px;
+            border: 1px solid pink;
+        }
+
+
+
+        .mainCol {
+            width: 450px;
+            margin-top: 50px;
+            margin-left: 320px;
+        }
+
+        .searchBox {
+            width: 100%;
+            height: 70px;
+            border: 12px solid;
+            border-image-source: linear-gradient(to left, royalblue, skyblue);
+            border-image-slice: 1;
+            border-radius: 3px;
+        }
+        #searchInput {
+            width: 100%;
+            height: 100%;
+            font-size: 22px;
+            color: rgb(69, 68, 68);
+            padding-left: 30px;
+        }
+        #searchInput:focus {
+            outline: none;
+        }
+        
+        
+        .content {
+            width: 100%;
+            list-style: none;
+            margin-top: 20px;
+            padding: 10px;
+        }
+        .content > li {
+            width: 100%;
+            height: 110px;
+            border-bottom: 1px solid gray;
+            padding-top: 10px;
+        }
+        .content > li > img {
+            width: 60px;
+        }
+        .content > li > p {
+            width: calc(100% - 80px);
+            float: right;
+            padding-top: 10px;
+            color: gray;
+            font-weight: bold;
+        }
+
+    </style>
+</head>
+<body>
+    <div id="wrap">
+        <aside class="selectedCol">
+            <h3>Favorites:</h3>
+            <ul class="selList">
+                <li></li>
+            </ul>
+        </aside>
+        <section class="mainCol">
+            <div class="searchBox">
+                <input type="text" id="searchInput" autofocus v-model="keyword" placeholder="Search...">
+            </div>
+            <ul class="content">
+                <li v-for="movie in filterSearch" :title="movie.overview">
+                    <img :src="movie.poster">
+                    <p>{{ movie.title }}</p>
+                </li>
+            </ul>
+        </section>
+
+    </div>
+
+    <script>
+        const API_KEY = "37aa3d4ad6503e2ce64eea1e809513f7";
+        const URL = `https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}`;
+        const IMG_URL = "https://image.tmdb.org/t/p/w500";
+        
+        const app = new Vue({
+            el: "#wrap",
+            data: {
+                keyword: '',
+                movies: [],
+            },
+            computed: {
+                filterSearch() {
+                    if (!this.keyword) {
+                        return this.movies
+                    }
+                    
+                    let keyword = this.keyword.toLowerCase().replace(/[.,\/#!$%\^&\*;:{}=\-_`~()\s]/g,"");
+                    return this.movies.filter(movie => {
+                        return movie.title.toLowerCase().replace(/[.,\/#!$%\^&\*;:{}=\-_`~()\s]/g,"").includes(keyword);
+                    });
+
+                }
+            },
+            async created() {
+                const res = await axios.get(URL);
+                const results = res['data']['results'];
+                this.movies = results.map(result => {
+                    return {
+                        title: result['title'],
+                        poster: IMG_URL + result['poster_path'],
+                        overview: result['overview'],
+                        selected: false,
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>
