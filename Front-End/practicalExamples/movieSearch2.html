@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Movie 2</title>
+
+    <!-- VUE.JS CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+    <!-- AXIOS CDN -->
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+    <style>
+        * {
+            padding: 0; margin: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+            color: gray;
+        }
+        
+        #wrap {
+            width: 100%;
+            position: relative;
+        }
+
+/* * * * *  LEFT  * * * * */
+
+        .left {
+            position: fixed;
+            width: 300px;
+            height: 100vh;
+            border: 1px solid blue;
+            padding: 50px 20px 10px;
+        }
+
+        .selectedList {
+            list-style: none;
+            margin-top: 20px;
+        }
+
+
+/* * * * *  RIGHT  * * * * */
+
+        .right {
+            margin-left: 300px;
+            padding-left: 20px;
+            padding-top: 30px;
+            width: calc(100% - 300px);
+            height: 800px;
+            /* overflow: hidden; */
+            /* border: 1px solid pink; */
+        }
+        .mainCol {
+            width: 450px;
+            height: 500px;
+            /* border: 1px solid cyan; */
+        }
+
+        .searchBox {
+            width: 100%;
+            height: 70px;
+            border: 12px solid;
+            border-image-source: linear-gradient(to left, royalblue, skyblue);
+            border-image-slice: 1;
+            border-radius: 3px;
+        }
+        #searchInput {
+            width: 100%;
+            height: 100%;
+            font-size: 22px;
+            color: rgb(69, 68, 68);
+            padding-left: 30px;
+        }
+        #searchInput:focus {
+            outline: none;
+        }
+
+        .content {
+            width: 100%;
+            list-style: none;
+            margin-top: 20px;
+        }
+        .content > li {
+            width: 100%;
+            height: 100px;
+            border-bottom: 1px solid gray;
+            padding-left: 10px;
+            margin-top: 10px;
+            position: relative;
+        }
+        .content > li > img {
+            width: 60px;
+        }
+        .content > li > p {
+            width: calc(100% - 80px);
+            float: right;
+            font-weight: bold;
+        }
+        .fav {
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translate(0, -60%);
+            font-size: 30px;
+        }
+        .fav:hover {
+            cursor: pointer;
+        }
+
+
+    </style>
+</head>
+<body>
+    
+    <div id="wrap">
+        <div class="left">
+            <h3>Favorites:</h3>
+            <ul class="selectedList">
+                <!-- <li v-for="movie in movies" v-if="movie.selected">{{movie.title}}</li> -->
+            </ul>
+        </div>
+        <div class="right">
+            <section class="mainCol">
+                <div class="searchBox">
+                    <input type="text" id="searchInput" autofocus v-model="keyword" placeholder="Search...">
+                </div>
+                <ul class="content">
+                    <li v-for="movie in filterSearch" :title="movie.overview">
+                        <div class="fav yes" v-if="movie.selected" @click="selectedToggle(movie)">★</div>
+                        <div class="fav no" v-if="!movie.selected" @click="selectedToggle(movie)">☆</div>
+                        <img :src="movie.poster">
+                        <p>{{ movie.title }}</p>
+                    </li>
+                </ul>
+            </section>
+        </div>
+    </div>
+
+
+    <script>
+        const API_KEY = "37aa3d4ad6503e2ce64eea1e809513f7";
+        const URL = `https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}`;
+        const IMG_URL = "https://image.tmdb.org/t/p/w500";
+
+        const STORAGE_KEY = 'vue_app';
+        let selectedStorage = {
+            fetch() {
+                return JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]')
+            },
+            save(movie) {
+                localStorage.setItem(STORAGE_KEY, JSON.stringify(movie));
+            }
+        }
+
+        const app = new Vue({
+            el: "#wrap",
+            data: {
+                keyword: '',
+                movies: [],
+            },
+            methods: {
+                selectedToggle(movie) {
+                    if (movie.selected) {
+                        movie.selected = false;
+                    }
+                    else {
+                        movie.selected = true;
+                    }
+                }
+            },
+            computed: {
+                filterSearch() {
+                    if (!this.keyword) {
+                        return this.movies
+                    }
+                    let keyword = this.keyword.toLowerCase().replace(/[.,\/#!$%\^&\*;:{}=\-_`~()\s]/g,"");
+                    return this.movies.filter(movie => {
+                        return movie.title.toLowerCase().replace(/[.,\/#!$%\^&\*;:{}=\-_`~()\s]/g,"").includes(keyword);
+                    })
+                }
+            },
+            async created() {
+                const res = await axios.get(URL);
+                const results = res['data']['results'];
+                this.movies = results.map(result => {
+                    return {
+                        title: result['title'],
+                        poster: IMG_URL + result['poster_path'],
+                        overview: result['overview'],
+                        selected: false,
+                    }
+                });
+            }
+        });
+    
+    </script>
+</body>
+</html>

@@ -14,15 +14,17 @@ el, data, methods, computed, watch, filter ... => options
 
 # Options
 
+
+
+### el
+
+- value: string (all other options are objects{})
+
+
+
 ### data
 
 - may be accessed as `app.$data`
-
-
-
-### component 
-
-- reusable modules
 
 
 
@@ -54,11 +56,19 @@ el, data, methods, computed, watch, filter ... => options
 
 
 
+### watch
+
+
+
+
+
 ### filter
 
 
 
+### component 
 
+- reusable modules
 
 
 
@@ -95,9 +105,13 @@ el, data, methods, computed, watch, filter ... => options
 ### v-if   vs  v-show
 
 - `v-if` // `v-else-if`   /// `v-else`
+  - `<template v-if="completed"> ... </template>`
 - both are dependent on conditions
 - `v-if`: component is NOT rendered into the HTML document at all.
+  - HTML 자체에 등장하지 않는다.
 - `v-show`: component _is_ rendered into HTML, but set as `display = none`
+  - HTML에서는 등장하지만, CSS로 인해 가려진다
+  - display/hide 가 빈번하면 show를 쓰는 게 더 낫다 (if를 쓴다면 render cost가 너무 큼)
 
 
 
@@ -106,19 +120,34 @@ el, data, methods, computed, watch, filter ... => options
 ### v-model
 
 - controls value of input tags (text, radio, textarea, select, ...)
+
+  - two way binding between Vue data and Input tags
+
+- can be accessed via the following: `app.$data.keyword`
+
+  - ```
+    const app = new Vue({
+       el: '#main',
+       data: {
+           keyword: '',
+       }
+    });
+    ```
+
 - will ignore the initial value, checked, or selected attributes should there be any changes made to the input after the HTML document loads.
+
   - (initial value may be specified inside the `data` option of the Vue instance)
 
 
 
 ### v-bind
 
-- used with: src, class, style, disabled, ...
+- used with: `href`, `src`, `class`, `style`, `disabled`, ... (usually HTML attributes)
+  - substitute Vue's data, methods, .. etc  into HTML attributes
 - short-hand: 
   - v-bind:src ==> :src
 - dynamically changing classes depending on specified condition
   - e.g) `:class="{red: email.length < 2}"` => assign class `red` whenever email length is less than 2
-- 
 
 
 
@@ -128,8 +157,8 @@ el, data, methods, computed, watch, filter ... => options
 
 - similar to using the `{{  }}` syntax when it comes to rendering text
 - `<p> {{ sample }} </p>`   <=>  `<p v-text="sample"></p>`
-
 - `v-html` will parse any html tags included, such as `<h1>`
+  - XSS (cross site scripting에 취약) 
 - `v-once` : only shows the initial value, even if any changes are made afterwards (not updated)
 
 
@@ -137,6 +166,8 @@ el, data, methods, computed, watch, filter ... => options
 ### v-for
 
 - for loops
+- v-for="item in items"
+- when used with v-if, v-for has higher priority
 
 
 
@@ -146,6 +177,11 @@ el, data, methods, computed, watch, filter ... => options
   - click.prevent.stop...   (stopPropagation ...)
 - shorthand:  `v-on:click` ==> `@click`
 - add function in `methods`
+- chaining 가능
+  - @keyup.enter
+- v-on:click="callbackFunction()"   => click했을 때 이 함수를 실행한다
+
+
 
 
 
