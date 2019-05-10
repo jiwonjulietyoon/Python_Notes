@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script
+        src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+        crossorigin="anonymous"></script>
+    <style>
+        .star-ratings {
+            unicode-bidi: bidi-override;
+            color: #ccc;
+            font-size: 40px;
+            position: relative;
+            margin: 0;
+            padding: 0;
+        }
+        .fill-ratings {
+            /* color: #e7711b; */
+            color: royalblue;
+            padding: 0;
+            position: absolute;
+            z-index: 1;
+            display: block;
+            top: 0;
+            left: 0;
+            overflow: hidden;
+        }
+
+        .fill-ratings > span {
+            display: inline-block;
+        }
+
+
+        .empty-ratings {
+            padding: 0;
+            display: block;
+            z-index: 0;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="star-ratings">
+        <div class="fill-ratings" style="width: 55%;">
+            <span>★★★★★</span>
+        </div>
+        <div class="empty-ratings">
+            <span>★★★★★</span>
+        </div>
+    </div>
+    <script>
+        $(document).ready(function () {
+            // Gets the span width of the filled-ratings span
+            // this will be the same for each rating
+            var star_rating_width = $('.fill-ratings span').width();
+            // Sets the container of the ratings to span width
+            // thus the percentages in mobile will never be wrong
+            $('.star-ratings').width(star_rating_width);
+        });
+
+    </script>
+</body>
+
+</html>
