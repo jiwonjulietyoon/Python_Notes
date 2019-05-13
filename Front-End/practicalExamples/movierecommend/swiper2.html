@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Swiper demo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+
+    <!-- Link Swiper's CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.0/css/swiper.min.css">
+
+    <!-- Demo styles -->
+    <style>
+        body {
+            background: #fff;
+            font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+            font-size: 14px;
+            color: #000;
+            margin: 0;
+            padding: 0;
+        }
+
+        .swiper-container {
+            width: 100%;
+            padding-top: 50px;
+            padding-bottom: 50px;
+        }
+
+        .swiper-slide {
+            background-position: center;
+            background-size: cover;
+            width: 200px;
+            height: 300px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="wrap">
+
+        <!-- Swiper -->
+        <div class="swiper-container">
+            <div class="swiper-wrapper">
+                <div v-for="slide in slides" class="swiper-slide" :style="{backgroundImage: 'url(' + slide.imgURL + ')'}"></div>
+            </div>
+        </div>
+
+    </div>
+
+
+
+
+    <!-- Swiper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.0/js/swiper.min.js"></script>
+
+    <!-- VUE.JS -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+    <!-- Initialize Swiper -->
+    <script>
+        const app = new Vue({
+            el: "#wrap",
+            data: {
+                slides: [
+                    {imgURL: 'http://lorempixel.com/300/600/nature/1'},
+                    {imgURL: 'http://lorempixel.com/300/600/nature/2'},
+                    {imgURL: 'http://lorempixel.com/300/600/nature/3'},
+                    {imgURL: 'http://lorempixel.com/300/600/nature/4'},
+                    {imgURL: 'http://lorempixel.com/300/600/nature/5'},
+                    {imgURL: 'http://lorempixel.com/300/600/nature/6'},
+                ]
+            }
+        });
+
+        var swiper = new Swiper('.swiper-container', {
+            effect: 'coverflow',
+            grabCursor: true,
+            centeredSlides: true,
+            slidesPerView: 'auto',
+            coverflowEffect: {
+                rotate: 50,
+                stretch: 0,
+                depth: 100,
+                modifier: 1,
+                slideShadows: true,
+            },
+            pagination: {
+                el: '.swiper-pagination',
+            },
+        });
+
+
+    </script>
+</body>
+
+</html>
