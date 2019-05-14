@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <!-- GOOGLE FONTS -->
+    <link href="https://fonts.googleapis.com/css?family=Nanum+Pen+Script" rel="stylesheet">
+
+
+    <title>GOD DONGJU</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background: #302929;
+        }
+
+        .wrapper {
+            position: absolute;
+            top: 55%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        @keyframes zindex9 {
+            0% {
+                z-index: 9;
+            }
+
+            100% {
+                z-index: 9;
+            }
+        }
+
+        @keyframes zindex10 {
+            0% {
+                z-index: 10;
+            }
+
+            100% {
+                z-index: 10;
+            }
+        }
+
+        .mail {
+            width: 600px;
+            height: 400px;
+            background: #ff8789;
+            position: relative;
+            transform-style: preserve-3d;
+            border-bottom-left-radius: 25px;
+            border-bottom-right-radius: 25px;
+            cursor: pointer;
+            /* animation: zindex 1s;
+            animation-delay: 1s;
+            animation-fill-mode: forwards; */
+        }
+
+        .mail:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            border-left: 280px solid Transparent;
+            border-right: 300px solid #ff393c;
+            border-top: 200px solid Transparent;
+            border-bottom: 200px solid #ff393c;
+            z-index: 5;
+            border-bottom-right-radius: 25px;
+            animation: zindex10 1s;
+            animation-delay: 1s;
+            animation-fill-mode: forwards;
+        }
+
+        .mail:after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            border-left: 300px solid #ff5355;
+            border-right: 280px solid Transparent;
+            border-top: 200px solid Transparent;
+            border-bottom: 200px solid #ff5355;
+            z-index: 4;
+            border-bottom-left-radius: 25px;
+            animation: zindex9 1s;
+            animation-delay: 1s;
+            animation-fill-mode: forwards;
+        }
+
+
+        @keyframes open {
+            0% {
+                transform: rotateX(0deg);
+            }
+
+            100% {
+                transform: rotateX(180deg);
+            }
+        }
+
+        .cover:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            border-left: 300px solid transparent;
+            border-right: 300px solid transparent;
+            border-top: 200px solid #ff8789;
+            border-bottom: 200px solid transparent;
+            z-index: 6;
+            transform-origin: top;
+            transform: rotateX(0deg);
+            transition: all 1s 1s ease;
+            animation: open 1s;
+            animation-fill-mode: forwards;
+        }
+
+        @keyframes letterOut {
+            0% {
+                top: 0px;
+                z-index: 8;
+            }
+
+            100% {
+                top: -100px;
+                z-index: 8;
+            }
+        }
+
+        .letter {
+            position: absolute;
+            z-index: 3;
+            top: 0px;
+            left: 20px;
+            background: #dedede;
+            width: 560px;
+            height: 360px;
+            border-radius: 25px;
+            transition: all 1s ease;
+            animation: letterOut 1s;
+            animation-delay: 1s;
+            animation-fill-mode: forwards;
+        }
+
+        .letter h1 {
+            position: absolute;
+            top: 40%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 70px;
+            color: #4d575c;
+            font-family: 'Nanum Pen Script', cursive;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="mail">
+            <div class="cover"></div>
+            <div class="letter">
+                <h1>감사합니다!</h1>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+
+    <script>
+        $(document).ready(function(){
+            setTimeout(function(){
+                window.location.replace("https://www.naver.com");
+            }, 4000);
+        });
+    </script>
+
+</body>
+
+</html>
